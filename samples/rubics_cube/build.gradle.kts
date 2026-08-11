@@ -65,5 +65,6 @@ android {
 dependencies {
 //    implementation("com.android.support:appcompat-v7:28.0.0")
 //    implementation("androidx.activity:activity-ktx:1.11.0")
+    implementation(project(":spatialml-xr-utils"))
     implementation("androidx.appcompat:appcompat:1.7.0")
 }

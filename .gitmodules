@@ -1,0 +1,3 @@
+[submodule "external/SpatialML-XR-Utils"]
+	path = external/SpatialML-XR-Utils
+	url = https://github.com/Pico-Developer/SpatialML-XR-Utils.git

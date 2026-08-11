@@ -26,3 +26,5 @@ include 'samples:readback'
 include 'samples:whackamole'
 include 'samples:stylize'
 include 'samples:face_mediapipe_pipeline'
+include ':spatialml-xr-utils'
+project(':spatialml-xr-utils').projectDir = file('external/SpatialML-XR-Utils/spatialml-xr-utils')

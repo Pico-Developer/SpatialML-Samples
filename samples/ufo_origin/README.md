@@ -5,7 +5,7 @@ _the one in `${PROJ_ROOT}/samples/ufo`. However,_
 _the sample application is re-written using the_
 _raw C-API from the OpenXR extension for SecureMR,_
 _without usage of the utility classes provided in_
-_`${PROJ_ROOT}/base/securemr_utils` to demonstrate:_
+_`${PROJ_ROOT}/external/SpatialML-XR-Utils/base/securemr_utils` to demonstrate:_
 
 1. _the most fundermental usage of the raw OpenXR extension, and_
 1. _the convenience that the utility classes provide_

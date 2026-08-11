@@ -3,12 +3,12 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 android {
-    compileSdk = 32
+    compileSdk = 34
     ndkVersion = "26.3.11579264"
     namespace = "com.bytedance.pico.secure_mr_demo.ufo_origin"
     defaultConfig {
-        minSdk = 32
-        targetSdk = 32
+        minSdk = 34
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         applicationId = "com.bytedance.pico.secure_mr_demo.ufo_origin"
@@ -59,4 +59,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+dependencies {
+    implementation(project(":spatialml-xr-utils"))
 }

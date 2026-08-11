@@ -62,4 +62,5 @@ android {
 }
 
 dependencies {
+    implementation(project(":spatialml-xr-utils"))
 }

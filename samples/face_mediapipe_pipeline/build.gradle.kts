@@ -6,12 +6,26 @@ plugins {
 val faceMediaPipePipelineUrl = "https://huggingface.co/picoxr/xr-face-mediapipe-pipeline/resolve/main/xr-face-mediapipe-pipeline.zip?download=true"
 val faceMediaPipePipelineAssetDir = layout.projectDirectory.dir("src/main/assets/xr-face-mediapipe-pipeline")
 val faceMediaPipePipelineZip = layout.buildDirectory.file("downloads/xr-face-mediapipe-pipeline.zip")
+val faceMediaPipePipelineRequiredFiles = listOf(
+    "manifest.json",
+    "pipeline/face_detection_pipeline.json",
+    "pipeline/face_display_pipeline.json",
+    "model/face_detector.tflite",
+    "gltf/frame.gltf",
+)
 
 val downloadFaceMediaPipePipelineAssets by tasks.registering {
     inputs.property("sourceUrl", faceMediaPipePipelineUrl)
     outputs.dir(faceMediaPipePipelineAssetDir)
 
     doLast {
+        val assetDir = faceMediaPipePipelineAssetDir.asFile
+        val hasRequiredAssets = faceMediaPipePipelineRequiredFiles.all { assetDir.resolve(it).isFile }
+        if (hasRequiredAssets) {
+            logger.lifecycle("Face MediaPipe pipeline assets already exist; skipping download.")
+            return@doLast
+        }
+
         val zipFile = faceMediaPipePipelineZip.get().asFile
         zipFile.parentFile.mkdirs()
 
@@ -93,6 +107,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+dependencies {
+    implementation(project(":spatialml-xr-utils"))
 }
 
 tasks.matching { it.name.startsWith("merge") && it.name.endsWith("Assets") }.configureEach {
