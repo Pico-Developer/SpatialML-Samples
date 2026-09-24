@@ -1,6 +1,6 @@
 ## Sample: YOLO Object Detection
 
-This sample builds an application for PICO using the SecureMR
+This sample builds an application for PICO using the SpatialML
 APIs. The application demonstrates real-time object detection
 using a YOLOX model converted from ONNX format.
 
@@ -32,9 +32,9 @@ The implementation follows a pipeline-based architecture with four main stages:
 
 ### Key Components
 
-The <mcsymbol name="YoloDetector" filename="yolo_object_detection.h" path="/Users/bytedance/Projects/SecureMR_Samples/samples/yolo_det/cpp/yolo_object_detection.h" startline="29" type="class"></mcsymbol> class manages:
+The yolo_object_detection.h class manages:
 
-- **Framework Setup**: Initializes SecureMR runtime and pipeline components
+- **Framework Setup**: Initializes SpatialML runtime and pipeline components
 - **Pipeline Management**: Creates and coordinates four main processing pipelines
 - **Data Flow**: Uses GlobalTensors for inter-pipeline communication
 - **Resource Management**: Handles GLTF assets and tensor memory
@@ -48,7 +48,7 @@ The <mcsymbol name="YoloDetector" filename="yolo_object_detection.h" path="/User
 
 ### Technical Details
 
-The implementation uses SecureMR's pipeline architecture for efficient:
+The implementation uses SpatialML's pipeline architecture for efficient:
 - Tensor operations
 - Multi-threaded execution
 - Hardware-accelerated processing

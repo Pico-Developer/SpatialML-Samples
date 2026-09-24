@@ -119,7 +119,7 @@ RubicsCube::~RubicsCube() {
 
 void RubicsCube::CreateFramework() {
   Log::SetLevel(Log::Level::Debug);
-  Log::Write(Log::Level::Info, "RubicsCube|Orchestrator: Initializing SecureMR framework session for readback sample");
+  Log::Write(Log::Level::Info, "RubicsCube|Orchestrator: Initializing SpatialML framework session for readback sample");
   const int imgW = overlayW_ > 0 ? overlayW_ : 1024;
   const int imgH = overlayH_ > 0 ? overlayH_ : 1024;
   frameworkSession_ = std::make_shared<FrameworkSession>(instance_, session_, imgW, imgH);
@@ -600,7 +600,7 @@ void RubicsCube::HandleReadbackResult(TensorReadbackResult&& result) {
 void RubicsCube::DebugFacesColor(const std::array<std::array<XrVector3f, 9>, 6>& faces) {
   constexpr int canvasSize = 200;
   constexpr int cellSize = canvasSize / 3;
-  const std::filesystem::path baseDir("/sdcard/Android/data/com.bytedance.pico.secure_mr_demo.rubics_cube/files");
+  const std::filesystem::path baseDir("/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.rubics_cube/files");
   std::error_code ec;
   std::filesystem::create_directories(baseDir, ec);
   if (ec) {

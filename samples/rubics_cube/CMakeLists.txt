@@ -12,7 +12,7 @@ set(SAMPLE_SRCS
         ${CMAKE_CURRENT_LIST_DIR}/cpp/virtual_cube.cpp
 )
 set(SAMPLE_DIR ${CMAKE_CURRENT_LIST_DIR}/cpp)
-set(USE_SECURE_MR_UTILS ON)
+set(USE_SPATIALML_UTILS ON)
 set(THIRD_PARTY_DIRS ${CMAKE_CURRENT_LIST_DIR}/third_party)
 include(${CMAKE_CURRENT_LIST_DIR}/../../cmake/kociemba.cmake)
 

@@ -1,7 +1,7 @@
 ## Sample: UFO
 
 This sample builds an application for PICO using the
-SecureMR APIs. In the application, users become a 
+SpatialML APIs. In the application, users become a
 pilot who remotely control a disc-shape UFO to chase
 human beings whoever they see. By simply looking 
 at other people's heads, the user will find their UFO
@@ -9,7 +9,7 @@ flies towards the detected human being and floats
 above their head. 
 
 The sample deploys an open-sourced face detection from
-MediaPipeline via SecureMR, and renders a UFO of
+MediaPipeline via SpatialML, and renders a UFO of
 glTF 2.0 format. 
 
 ![Demo for face tracking with an UFO chasing the detected face](../../docs/Demo-UFO.gif)

@@ -96,7 +96,7 @@ fi
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 REPO_ROOT=$(dirname "$SCRIPT_DIR")
 
-PACKAGE_NAME="com.bytedance.pico.secure_mr_demo.model_inspect"
+PACKAGE_NAME="com.bytedance.pico.spatial_ml_demo.model_inspect"
 COMPONENT="$PACKAGE_NAME/android.app.NativeActivity"
 # Keep under Android setprop length limits; use app external storage.
 DEVICE_TMP_DIR="/sdcard/Android/data/${PACKAGE_NAME}/files"

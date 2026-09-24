@@ -1,6 +1,6 @@
-# SecureMR Samples
+# SpatialML Samples
 
-## Samples for SecureMR.
+## Samples for SpatialML.
 
 | Face tracking | Pose estimation | YOLO |
 |:-------------:|:---------------:|:----:|
@@ -25,14 +25,14 @@
 
 ## SpatialML Pipeline Zoo
 
-Ready-to-use SpatialML pipeline packages are available in the PICO [SpatialML Pipeline Zoo](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo) on Hugging Face. These packages bundle serialized models, JSON pipeline definitions, manifests, and related assets so apps can load complete SecureMR pipelines through the utility classes under `base/securemr_utils`.
+Ready-to-use SpatialML pipeline packages are available in the PICO [SpatialML Pipeline Zoo](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo) on Hugging Face. These packages bundle serialized models, JSON pipeline definitions, manifests, and related assets so apps can load complete SpatialML pipelines through the utility classes under `base/securemr_utils`.
 
 See the [`face_mediapipe_pipeline`](samples/face_mediapipe_pipeline/README.md) sample for an app that downloads the [Face MediaPipe pipeline package](https://huggingface.co/picoxr/face-mediapipe-pipeline) during the Gradle build and uses `SecureMrUtils::LoadModelPackagePipelinesFromAssets(...)` to construct its detection and display pipelines automatically.
 
 ## Project aims
 
 The projects demonstrates the functionalities and usage of
-the SecureMR interfaces through several out-of-the-box
+the SpatialML interfaces through several out-of-the-box
 sample applications. The applications each achieve some
 customized MR-based effects with deployment of open-sourced
 machine learning algorithms. 
@@ -40,9 +40,9 @@ machine learning algorithms.
 Additionally, the project provides a set of utility classes,
 located under [`base/securemr_utils`](base/securemr_utils/README.md)
 to simplify your
-development of SecureMR-enabled applications. 
+development of SpatialML-enabled applications.
 
-The [`sample/mnist`](samples/mnistwild) also demonstrates how to defines the SecureMR
+The [`sample/mnist`](samples/mnistwild) also demonstrates how to defines the SpatialML
 pipelines completely in JSON, using which allows your application
 to dynamically load and update pipelines at run time, without hard
 coding the algorithms into the app. 
@@ -75,9 +75,9 @@ deploy your own algorithm packages.
 │   │            verification XR API results and vulkan renderer
 │   │
 │   ├── securemr_utils
-│   │            Utility for SecureMR samples, to simplify the logic
+│   │            Utility for SpatialML samples, to simplify the logic
 │   │            in samples. Note, to demonstrate the raw usage of
-│   │            the C-API for SecureMR provided as an OpenXR extension,
+│   │            the C-API for SpatialML provided as an OpenXR extension,
 │   │            some sample projects are written by directly calling
 │   │            the C-API instead of using the utility classes here. 
 │   │
@@ -105,7 +105,7 @@ deploy your own algorithm packages.
 │   ├── readback
 │   │             A minimumal demo that shows the usage of the readback APIs, which
 │   │             allows an app, if proper camera or spatial-data permission(s)
-│   │             is granted, to read the tensor content back from the SecureMR server.
+│   │             is granted, to read the tensor content back from the SpatialML server.
 │   │             This demo does not deploy any algorithms, nor present any render
 │   │             effects: it simply calls the readback methods to obtain the camera
 │   │             image and save it to local storage. 
@@ -116,7 +116,7 @@ deploy your own algorithm packages.
 │   │
 │   ├── face_mediapipe_pipeline
 │   │             A face detection and rendering demo that downloads a SpatialML
-│   │             pipeline zoo package and builds the SecureMR pipelines from JSON
+│   │             pipeline zoo package and builds the SpatialML pipelines from JSON
 │   │             package metadata using the utility classes.
 │   │
 │   ├── rubics_cube
@@ -162,16 +162,16 @@ deploy your own algorithm packages.
      1. `mnistwild` which contains a hand-written digit recognition demo
      1. `readback` which contains a minimal demo showing the usage of the readback APIs
      1. `stylize` which contains an artistic stylization demo for the camera feed
-     1. `face_mediapipe_pipeline` which downloads a SpatialML pipeline zoo package and builds the SecureMR pipelines from JSON package metadata
+     1. `face_mediapipe_pipeline` which downloads a SpatialML pipeline zoo package and builds the SpatialML pipelines from JSON package metadata
      1. `whackamole` which contains a MR whack-a-mole game, based on pose detection and customized post-processing and game logic implemented in JavaScript
      1. `rubics_cube` which contains a Rubik's Cube solver demo
      1. `model_inspect` which is a utility for model validation
      1. `ufo-origin`, the same demo as `ufo`, but written using direct calls to the OpenXR C-API, with no 
-         simplification using SecureMR Utils classes. 
+         simplification using SpatialML utility classes.
 1. Connect to a PICO 4 Ultra device with the latest OS update installed
 1. Select the module you want to run, and click the launch button.
 
 ## PICO Developer Reference 
 
-You can view the full SecureMR document via
+You can view the full SpatialML document via
 [this link to PICO Developer website](https://developer-cn.picoxr.com/document/native/securemr-overview/). 

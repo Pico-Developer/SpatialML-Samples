@@ -1,6 +1,6 @@
 # Sample: Face MediaPipe Pipeline
 
-This sample demonstrates how to run a prebuilt SpatialML pipeline package from the PICO pipeline zoo. Instead of hard-coding every SecureMR tensor and operator in C++, the app downloads a package that contains the model, JSON pipeline definitions, manifest metadata, and glTF assets, then uses the SecureMR utility loaders to build and run the pipelines automatically.
+This sample demonstrates how to run a prebuilt SpatialML pipeline package from the PICO pipeline zoo. Instead of hard-coding every SpatialML tensor and operator in C++, the app downloads a package that contains the model, JSON pipeline definitions, manifest metadata, and glTF assets, then uses the SpatialML utility loaders to build and run the pipelines automatically.
 
 ![Face MediaPipe Pipeline demo](face_mediapipe_pipeline.gif)
 
@@ -48,7 +48,7 @@ xr-face-mediapipe-pipeline/
     └── face_display_pipeline.json
 ```
 
-The `manifest.json` names the available pipelines, model files, and runtime metadata. The files under `pipeline/` define the SecureMR tensors and operators: the detection pipeline handles VST input, model inference, and post-processing; the display pipeline consumes the detection tensor, projects it into 3D, and renders the frame glTF overlay.
+The `manifest.json` names the available pipelines, model files, and runtime metadata. The files under `pipeline/` define the SpatialML tensors and operators: the detection pipeline handles VST input, model inference, and post-processing; the display pipeline consumes the detection tensor, projects it into 3D, and renders the frame glTF overlay.
 
 ## How the sample uses the package
 
@@ -67,6 +67,6 @@ Build or install the sample normally; if the package assets are not already pres
 ./gradlew :samples:face_mediapipe_pipeline:installDebug
 ```
 
-Then launch **Face MediaPipe Pipeline** on a supported PICO device with SecureMR support.
+Then launch **Face MediaPipe Pipeline** on a supported PICO device with SpatialML support.
 
 When the sample is running, look toward a face in the VST camera view. The app should detect the face and render the packaged glTF face-frame overlay aligned with the detected face. As the face moves, the overlay should follow the face in real time, showing that the downloaded detection and display pipelines are both running successfully.

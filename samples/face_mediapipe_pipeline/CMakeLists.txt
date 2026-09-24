@@ -5,7 +5,7 @@ set(SAMPLE_SRCS
         ${CMAKE_CURRENT_LIST_DIR}/cpp/face_mediapipe_pipeline.cpp
 )
 set(SAMPLE_DIR ${CMAKE_CURRENT_LIST_DIR}/cpp)
-set(USE_SECURE_MR_UTILS ON)
+set(USE_SPATIALML_UTILS ON)
 set(THIRD_PARTY_DIRS "")
 
 set(SPATIALML_XR_UTILS_DIR

@@ -273,7 +273,7 @@ void WhackamoleDetector::RunPipelines() {
 }
 
 void WhackamoleDetector::CreateSecureMrVSTImagePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR CreateSecureMrVSTImagePipeline");
+  Log::Write(Log::Level::Info, "SpatialML CreateSecureMrVSTImagePipeline");
 
   m_secureMrVSTImagePipeline = std::make_shared<Pipeline>(frameworkSession);
 
@@ -300,7 +300,7 @@ void WhackamoleDetector::CreateSecureMrVSTImagePipeline() {
 }
 
 void WhackamoleDetector::CreateSecureMrModelInferencePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR: CreateSecureMrModelInferencePipeline");
+  Log::Write(Log::Level::Info, "SpatialML: CreateSecureMrModelInferencePipeline");
 
   m_secureMrDetectionPipeline = std::make_shared<Pipeline>(frameworkSession);
   m_secureMrLandmarkPipeline = std::make_shared<Pipeline>(frameworkSession);

@@ -305,7 +305,7 @@ void YoloDetector::RenderText(const std::shared_ptr<Pipeline>& pipeline, const s
 }
 
 void YoloDetector::CreateSecureMrVSTImagePipeline()  {
-  Log::Write(Log::Level::Info, "Secure MR CreateSecureMrVSTImagePipeline");
+  Log::Write(Log::Level::Info, "SpatialML CreateSecureMrVSTImagePipeline");
 
   m_secureMrVSTImagePipeline = std::make_shared<Pipeline>(frameworkSession);
 
@@ -346,7 +346,7 @@ void YoloDetector::CreateSecureMrVSTImagePipeline()  {
 }
 
 void YoloDetector::CreateSecureMrModelInferencePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR: CreateSecureMrModelInferencePipeline");
+  Log::Write(Log::Level::Info, "SpatialML: CreateSecureMrModelInferencePipeline");
 
   m_secureMrModelInferencePipeline = std::make_shared<Pipeline>(frameworkSession);
   vstImagePlaceholder = PipelineTensor::PipelinePlaceholderLike(m_secureMrModelInferencePipeline, vstOutputLeftFp32Global);

@@ -163,7 +163,7 @@ void FaceTracker::RunPipelines() {
 }
 
 void FaceTracker::CreateSecureMrVSTImagePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR CreateSecureMrVSTImagePipeline");
+  Log::Write(Log::Level::Info, "SpatialML CreateSecureMrVSTImagePipeline");
 
   m_secureMrVSTImagePipeline = std::make_shared<Pipeline>(frameworkSession);
 
@@ -186,7 +186,7 @@ void FaceTracker::CreateSecureMrVSTImagePipeline() {
 }
 
 void FaceTracker::CreateSecureMrModelInferencePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR: CreateSecureMrModelInferencePipeline");
+  Log::Write(Log::Level::Info, "SpatialML: CreateSecureMrModelInferencePipeline");
 
   m_secureMrModelInferencePipeline = std::make_shared<Pipeline>(frameworkSession);
 

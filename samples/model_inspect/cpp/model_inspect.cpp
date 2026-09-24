@@ -336,7 +336,7 @@ class ModelInspectApp : public ISecureMR {
 
     const auto elements = SecureMrUtils::ElementCount(binding.attr);
     Log::Write(Log::Level::Info,
-               Fmt("ModelInspect: %s %s (SecureMR) shape=%s c=%d dtype=%s elements=%zu", type.c_str(),
+               Fmt("ModelInspect: %s %s (SpatialML) shape=%s c=%d dtype=%s elements=%zu", type.c_str(),
                    binding.name.c_str(), JoinDims(binding.attr.dimensions).c_str(), binding.attr.channels,
                    DataTypeName(binding.attr.dataType).c_str(), elements));
   }

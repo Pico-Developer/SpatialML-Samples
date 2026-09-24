@@ -1,12 +1,12 @@
 ## Sample: Stylize Demo
 
 This sample builds an application for PICO using the
-SecureMR APIs. The application demonstrates neural
+SpatialML APIs. The application demonstrates neural
 style transfer on live VST imagery and renders the
 stylized output onto two portal surfaces.
 
 The sample deploys a style predictor model and a
-style transfer model through SecureMR, and maps
+style transfer model through SpatialML, and maps
 the output to a glTF portal mesh.
 
 ### Render

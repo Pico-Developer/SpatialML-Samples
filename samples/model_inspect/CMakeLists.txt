@@ -3,7 +3,7 @@ project(model_inspect)
 
 set(SAMPLE_SRCS ${CMAKE_CURRENT_LIST_DIR}/cpp/model_inspect.cpp)
 set(SAMPLE_DIR ${CMAKE_CURRENT_LIST_DIR}/cpp)
-set(USE_SECURE_MR_UTILS ON)
+set(USE_SPATIALML_UTILS ON)
 
 set(SPATIALML_XR_UTILS_DIR
     "${CMAKE_CURRENT_LIST_DIR}/../../external/SpatialML-XR-Utils"
