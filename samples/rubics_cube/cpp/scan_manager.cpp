@@ -125,7 +125,7 @@ bool ScanManager::TryLockFace(Face target, const Frame& frame) {
       if (!g_internalDataPath.empty()) {
         cacheDir = fs::path(g_internalDataPath) / "cache";
       } else {
-        cacheDir = fs::path("/sdcard/Android/data/com.bytedance.pico.secure_mr_demo.rubics_cube/cache");
+        cacheDir = fs::path("/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.rubics_cube/cache");
       }
       std::error_code ec;
       fs::create_directories(cacheDir, ec);
@@ -228,7 +228,7 @@ bool ScanManager::TryLockFace(Face target, const Frame& frame) {
           if (!g_internalDataPath.empty()) {
             cacheDir = fs::path(g_internalDataPath) / "cache";
           } else {
-            cacheDir = fs::path("/sdcard/Android/data/com.bytedance.pico.secure_mr_demo.rubics_cube/cache");
+            cacheDir = fs::path("/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.rubics_cube/cache");
           }
           std::error_code ec;
           fs::create_directories(cacheDir, ec);

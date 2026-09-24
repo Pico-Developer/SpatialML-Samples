@@ -14,7 +14,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Secure MR Demos"
+rootProject.name = "SpatialML Demos"
 include 'samples:ufo'
 include 'samples:pose'
 include 'samples:ufo_origin'

@@ -29,7 +29,7 @@ std::string Solver::Solve(const std::string& code) {
   long timeoutSec = 5;  // safety timeout
   int useSeparator = 0; // do not insert '.'
 #if defined(XR_USE_PLATFORM_ANDROID)
-  std::string cache = g_internalDataPath.empty() ? std::string("/sdcard/Android/data/com.bytedance.pico.secure_mr_demo.rubics_cube/cache/kociemba")
+  std::string cache = g_internalDataPath.empty() ? std::string("/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.rubics_cube/cache/kociemba")
                                                  : (g_internalDataPath + std::string("/kociemba"));
 #else
   std::string cache = std::string("cache/kociemba");

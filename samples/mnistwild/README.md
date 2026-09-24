@@ -1,9 +1,9 @@
 ## Sample: MNIST Recognition
 
-This sample builds a SecureMR application that recognizes hand-written digits that appear in the
+This sample builds a SpatialML application that recognizes hand-written digits that appear in the
 VST camera feed. Unlike the other samples, both the preprocessing and inference pipelines are
 described entirely in JSON ([mnist_pipeline.json](../../assets/mnistwild/mnist_pipeline.json)) and deserialized at runtime to create the
-SecureMR pipeline graph.
+SpatialML pipeline graph.
 
 The experience renders three virtual TV in front of the user. The cropped digit, its predicted class,
 and the confidence score are displayed on the screen in real time.

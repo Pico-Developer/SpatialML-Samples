@@ -159,7 +159,7 @@ void PoseDetector::RunPipelines() {
 }
 
 void PoseDetector::CreateSecureMrVSTImagePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR CreateSecureMrVSTImagePipeline");
+  Log::Write(Log::Level::Info, "SpatialML CreateSecureMrVSTImagePipeline");
 
   m_secureMrVSTImagePipeline = std::make_shared<Pipeline>(frameworkSession);
 
@@ -186,7 +186,7 @@ void PoseDetector::CreateSecureMrVSTImagePipeline() {
 }
 
 void PoseDetector::CreateSecureMrModelInferencePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR: CreateSecureMrModelInferencePipeline");
+  Log::Write(Log::Level::Info, "SpatialML: CreateSecureMrModelInferencePipeline");
 
   m_secureMrDetectionPipeline = std::make_shared<Pipeline>(frameworkSession);
   m_secureMrLandmarkPipeline = std::make_shared<Pipeline>(frameworkSession);

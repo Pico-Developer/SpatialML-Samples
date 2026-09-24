@@ -46,14 +46,14 @@ val downloadFaceMediaPipePipelineAssets by tasks.registering {
 android {
     compileSdk = 34
     ndkVersion = "26.3.11579264"
-    namespace = "com.bytedance.pico.secure_mr_demo.face_mediapipe_pipeline"
+    namespace = "com.bytedance.pico.spatial_ml_demo.face_mediapipe_pipeline"
 
     defaultConfig {
         minSdk = 34
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        applicationId = "com.bytedance.pico.secure_mr_demo.face_mediapipe_pipeline"
+        applicationId = "com.bytedance.pico.spatial_ml_demo.face_mediapipe_pipeline"
 
         externalNativeBuild {
             cmake {

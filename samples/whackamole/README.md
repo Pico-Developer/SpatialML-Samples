@@ -1,10 +1,10 @@
 ## Whack‑a‑Mole (Ducks) — JavaScript Operator Collision Demo
 
-This sample demonstrates how to integrate a JavaScript operator into a SecureMR pipeline to implement gameplay logic: detecting collisions between “moles” (duck glTFs) and human wrist joints, toggling visibility on hits, scheduling timed appearances/disappearances, and persisting a score — all driven by tensors exchanged between C++ and JavaScript.
+This sample demonstrates how to integrate a JavaScript operator into a SpatialML pipeline to implement gameplay logic: detecting collisions between “moles” (duck glTFs) and human wrist joints, toggling visibility on hits, scheduling timed appearances/disappearances, and persisting a score — all driven by tensors exchanged between C++ and JavaScript.
 
 ### What This Shows
 
-- Pose detection and landmark extraction run in SecureMR pipelines
+- Pose detection and landmark extraction run in SpatialML pipelines
 - A JavaScript operator consumes landmark and game‑state tensors
 - Per‑frame collision detection against wrist joints
 - Visibility toggling and timed on/off scheduling for each duck

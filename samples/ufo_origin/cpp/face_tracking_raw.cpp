@@ -567,7 +567,7 @@ void FaceTrackingRaw::Map2Dto3D() {
 }
 
 void FaceTrackingRaw::CreateSecureMrVSTImagePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR CreateSecureMrVSTImagePipeline");
+  Log::Write(Log::Level::Info, "SpatialML CreateSecureMrVSTImagePipeline");
   XrSecureMrPipelineCreateInfoPICO createInfo{XR_TYPE_SECURE_MR_PIPELINE_CREATE_INFO_PICO, nullptr};
   CHECK_XRCMD(xrCreateSecureMrPipelinePICO(m_secureMrFramework, &createInfo, &m_secureMrVSTImagePipeline));
 
@@ -615,7 +615,7 @@ void FaceTrackingRaw::CreateSecureMrVSTImagePipeline() {
 }
 
 void FaceTrackingRaw::CreateSecureMrModelInferencePipeline() {
-  Log::Write(Log::Level::Info, "Secure MR: CreateSecureMrModelInferencePipeline");
+  Log::Write(Log::Level::Info, "SpatialML: CreateSecureMrModelInferencePipeline");
   XrSecureMrPipelineCreateInfoPICO createInfo{XR_TYPE_SECURE_MR_PIPELINE_CREATE_INFO_PICO, nullptr};
   CHECK_XRCMD(xrCreateSecureMrPipelinePICO(m_secureMrFramework, &createInfo, &m_secureMrModelInferencePipeline));
 

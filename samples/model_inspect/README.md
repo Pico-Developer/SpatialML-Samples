@@ -1,11 +1,11 @@
 # Sample: Model Inspect Tool
 
-This sample runs a single SecureMR model inference to validate a serialized model on device. It is primarily used as a diagnostic tool for checking model compatibility and performance on PICO 4 Ultra (OS 5.15+).
+This sample runs a single SpatialML model inference to validate a serialized model on device. It is primarily used as a diagnostic tool for checking model compatibility and performance on PICO 4 Ultra (OS 5.15+).
 
 ## Prerequisites
 
 - PICO 4 Ultra with OS version >= 5.15.0
-- Serialized SecureMR model files (.bin and .json)
+- Serialized SpatialML model files (.bin and .json)
 
 ## Usage
 
@@ -31,5 +31,5 @@ adb shell setprop debug.securemr.model_inspect.input /data/local/tmp/my_model/in
 
 ## Outputs
 
-- Outputs are read back via the SecureMR readback API and written under the app's external files directory (for example `/sdcard/Android/data/com.bytedance.pico.secure_mr_demo.model_inspect/files/model_inspect/`) as `model_inspect_output_<tensor>.bin`.
+- Outputs are read back via the SpatialML readback API and written under the app's external files directory (for example `/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.model_inspect/files/model_inspect/`) as `model_inspect_output_<tensor>.bin`.
 - Logcat will print a short preview of each output along with the tensor shape and data type for quick verification.

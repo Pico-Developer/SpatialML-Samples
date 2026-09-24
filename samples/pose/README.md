@@ -1,13 +1,13 @@
 ## Sample: Pose Detection
 
 This sample builds an application for PICO using the
-SecureMR APIs. The application demos how to use the
-SecureMR APIs for data-driven skeleton animation.
+SpatialML APIs. The application demos how to use the
+SpatialML APIs for data-driven skeleton animation.
 Users will find the app can render "stick man" animations
 according to the detected human being's poses.
 
 The sample deploys an open-sourced pose detection from
-MediaPipeline via SecureMR, and renders a pose marker of
+MediaPipeline via SpatialML, and renders a pose marker of
 glTF 2.0 format.
 
 ![Demo for pose estimation](../../docs/Demo-Pose.gif)

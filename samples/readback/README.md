@@ -1,9 +1,9 @@
 # Sample: Readback
 
-This sample demonstrates SecureMR readback on global tensor by both CPU buffers and GPU textures (Vulkan / OpenGL ES). It acquires the VST camera frame via a SecureMR pipeline and exports a PNG file to the app’s external storage for quick verification.
+This sample demonstrates SpatialML readback on global tensor by both CPU buffers and GPU textures (Vulkan / OpenGL ES). It acquires the VST camera frame via a SpatialML pipeline and exports a PNG file to the app’s external storage for quick verification.
 
 ## Expected Behavior
-- After camera permission is granted, the app initializes the SecureMR pipeline.
+- After camera permission is granted, the app initializes the SpatialML pipeline.
 - On each successful readback, a `output.png` is written to external storage.
 - Exports PNG in external storage.
   
@@ -42,7 +42,7 @@ The Gradle flavors configure CMake flags automatically:
 
 ## Output
 - The exported file is written to the app’s external files directory:
-  - Example: `/sdcard/Android/data/com.bytedance.pico.secure_mr_demo.readback/files/output.png`
+  - Example: `/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.readback/files/output.png`
 
 ## Implementation Notes
 - Core controller: `readback.h`

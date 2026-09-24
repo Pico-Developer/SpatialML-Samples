@@ -197,7 +197,7 @@ def main():
     args = parser.parse_args()
 
     if not args.package and not args.regex:
-        args.regex = "Secure MR"
+        args.regex = "SpatialML"
 
     reader = LogcatReader(args.package, args.regex)
     

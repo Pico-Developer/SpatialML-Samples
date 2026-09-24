@@ -5,13 +5,13 @@ plugins {
 android {
     compileSdk = 34
     ndkVersion = "26.3.11579264"
-    namespace = "com.bytedance.pico.secure_mr_demo.mnistwild"
+    namespace = "com.bytedance.pico.spatial_ml_demo.mnistwild"
     defaultConfig {
         minSdk = 34
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        applicationId = "com.bytedance.pico.secure_mr_demo.mnistwild"
+        applicationId = "com.bytedance.pico.spatial_ml_demo.mnistwild"
         externalNativeBuild {
             cmake {
                 arguments.add("-DANDROID_STL=c++_shared")
