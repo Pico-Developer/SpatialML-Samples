@@ -1,72 +1,51 @@
-# Sample: Face MediaPipe Pipeline
+# Face MediaPipe Pipeline
 
-This sample demonstrates how to run a prebuilt SpatialML pipeline package from the PICO pipeline zoo. Instead of hard-coding every SpatialML tensor and operator in C++, the app downloads a package that contains the model, JSON pipeline definitions, manifest metadata, and glTF assets, then uses the SpatialML utility loaders to build and run the pipelines automatically.
+This sample loads a complete schema-v2 SpatialML package and renders a glTF frame over the highest-confidence face detected in the VST camera image. Pipeline tensors and operators are declared in JSON instead of being constructed individually in C++.
 
 ![Face MediaPipe Pipeline demo](face_mediapipe_pipeline.gif)
 
-## Pipeline zoo package
+## Bundled package
 
-PICO publishes ready-to-use SpatialML pipeline packages in the pipeline zoo on Hugging Face:
+The package is committed under [`src/main/assets/xr-face-mediapipe-pipeline`](src/main/assets/xr-face-mediapipe-pipeline). Gradle does not download or replace these assets. This keeps builds reproducible and allows package changes to be reviewed with the sample.
 
-- [SpatialML Pipeline Zoo collection](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo)
-- [Face MediaPipe pipeline package](https://huggingface.co/picoxr/xr-face-mediapipe-pipeline)
-
-The face detector model used by this package is based on [Qualcomm AI Hub - MediaPipe Face Detection](https://aihub.qualcomm.com/models/mediapipe_face).
-
-Optionally, the Gradle build can download the Face MediaPipe package automatically from Hugging Face and unpack it into the app assets directory:
-
-```
-samples/face_mediapipe_pipeline/src/main/assets/xr-face-mediapipe-pipeline/
-```
-
-The downloaded package is intentionally ignored by git because it is fetched from Hugging Face during the build when needed.
-
-If you are not using the Gradle download task, download the package zip from the [Face MediaPipe pipeline package](https://huggingface.co/picoxr/xr-face-mediapipe-pipeline), extract it, and place the extracted `xr-face-mediapipe-pipeline` folder under:
-
-```
-samples/face_mediapipe_pipeline/src/main/assets/
-```
-
-The native code points to this asset folder by relative path:
-
-```cpp
-constexpr const char* kModelPackageAssetPath = "xr-face-mediapipe-pipeline";
-```
-
-The package contains the files needed to describe and run the complete pipeline:
-
-```
+```text
 xr-face-mediapipe-pipeline/
 ├── manifest.json
 ├── gltf/
 │   └── frame.gltf
 ├── model/
-│   ├── face_detector.tflite
-│   └── model.json
+│   └── face_detector.tflite
 └── pipeline/
     ├── face_detection_pipeline.json
     └── face_display_pipeline.json
 ```
 
-The `manifest.json` names the available pipelines, model files, and runtime metadata. The files under `pipeline/` define the SpatialML tensors and operators: the detection pipeline handles VST input, model inference, and post-processing; the display pipeline consumes the detection tensor, projects it into 3D, and renders the frame glTF overlay.
+The package uses `schema_version: "2"`; model metadata is inline on the `RUN_MODEL_INFERENCE` operator. There is no separate `model.json`. The TFLite face detector targets NPU.
 
-## How the sample uses the package
+The corresponding published package is available from the [Face MediaPipe pipeline repository](https://huggingface.co/picoxr/xr-face-mediapipe-pipeline), and related packages are listed in the [SpatialML Pipeline Zoo](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo).
 
-At runtime, the sample calls `SecureMrUtils::LoadModelPackagePipelinesFromAssets(...)` with the asset root `xr-face-mediapipe-pipeline`. The utility reads the package `manifest.json`, loads the referenced pipeline JSON files, patches model operators to use the packaged serialized model, creates shared global tensor bindings between the detection and display pipelines, and binds packaged glTF assets through pipeline placeholders.
+## Runtime flow
 
-The app then submits two pipelines in sequence:
+The native host calls `SecureMrUtils::LoadModelPackagePipelinesFromAssets(...)` with `xr-face-mediapipe-pipeline`, then submits:
 
-1. `detection`: reads the VST camera tensors, runs MediaPipe face inference, and writes detection output.
-2. `display`: consumes the detection output, projects it into camera/world space, and renders a glTF face-frame overlay.
+1. `detection` — acquires the 580 x 326 VST frame, preprocesses it, runs MediaPipe Face Detection on LiteRT NPU, and produces `post_det`.
+2. `display` — converts the detection into the face-frame transform, renders the confidence label, and draws `frame.gltf`.
+
+The display submission depends on the detection run so it never consumes a partially updated result.
 
 ## Build and run
 
-Build or install the sample normally; if the package assets are not already present, Gradle can download the package before merging assets:
-
-```
+```sh
 ./gradlew :samples:face_mediapipe_pipeline:installDebug
 ```
 
-Then launch **Face MediaPipe Pipeline** on a supported PICO device with SpatialML support.
+Launch **Face MediaPipe Pipeline**, grant camera permission, and look toward a face. The frame and confidence text should remain aligned with the face as the headset or subject moves.
 
-When the sample is running, look toward a face in the VST camera view. The app should detect the face and render the packaged glTF face-frame overlay aligned with the detected face. As the face moves, the overlay should follow the face in real time, showing that the downloaded detection and display pipelines are both running successfully.
+For detailed startup, NPU, and inference logs:
+
+```sh
+adb -s <device-serial> shell setprop debug.pico.securemr.debug 1
+adb -s <device-serial> logcat | grep -E 'FaceMediaPipePipeline|OpenMR|Secure MR|litert'
+```
+
+Successful execution includes `OpenMR: createFramework ... err: 0`, LiteRT Qualcomm/NPU initialization, and repeated `OpenMR: executePipeline ... err: 0` messages. A camera `PREPROCESS_ERROR` occurs before package/model loading and indicates a device capture/VST problem rather than invalid package JSON.

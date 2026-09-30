@@ -1,0 +1,14 @@
+{
+  "tensors": {
+    "scoreboard":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/scoreboard_panel.gltf"},
+    "score_canvas":{"dimensions":[256,256],"channels":4,"data_type":1,"is_placeholder":false,"usage":6},
+    "score_texture":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":true,"usage":2},
+    "score_material":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":false,"usage":2,"data":[0]}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPLOAD_TEXTURE_TO_GLTF_PICO","inputs":[{"tensor":"scoreboard"},{"tensor":"score_canvas"}],"outputs":[{"tensor":"score_texture"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPDATE_GLTF_PICO","inputs":[{"tensor":"scoreboard"},{"tensor":"score_material"},{"tensor":"score_texture"}],"outputs":[],"attrs":["material::base_color_texture"]}
+  ],
+  "inputs": [],
+  "outputs": ["score_texture"]
+}

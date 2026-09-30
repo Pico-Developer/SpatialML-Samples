@@ -1,0 +1,627 @@
+{
+  "tensors": {
+    "post_det": {
+      "dimensions": [
+        1,
+        21
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 263
+    },
+    "vst_left_image": {
+      "dimensions": [
+        326,
+        580
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 259
+    },
+    "vst_right_image": {
+      "dimensions": [
+        326,
+        580
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 259
+    },
+    "vst_timestamp": {
+      "dimensions": [
+        1
+      ],
+      "channels": 4,
+      "data_type": 5,
+      "is_placeholder": true,
+      "usage": 5
+    },
+    "vst_camera_matrix": {
+      "dimensions": [
+        3,
+        3
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 263
+    },
+    "frame_gltf": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 1,
+      "is_placeholder": true,
+      "usage": 7,
+      "is_gltf": true,
+      "asset": "gltf/frame.gltf"
+    },
+    "score": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": false
+    },
+    "image_point": {
+      "dimensions": [
+        1
+      ],
+      "channels": 2,
+      "data_type": 5,
+      "is_placeholder": false,
+      "usage": 1
+    },
+    "point_xyz_array": {
+      "dimensions": [
+        1
+      ],
+      "channels": 3,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 1
+    },
+    "point_xyz": {
+      "dimensions": [
+        3,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": false
+    },
+    "point_xyz_multiplier": {
+      "dimensions": [
+        3,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "data": [
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "is_placeholder": false
+    },
+    "box_width": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": false
+    },
+    "box_height": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": false
+    },
+    "scale_x": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": false
+    },
+    "scale_y": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": false
+    },
+    "scale_z": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "data": [
+        0.02
+      ],
+      "is_placeholder": false
+    },
+    "frame_scale": {
+      "dimensions": [
+        3,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": true
+    },
+    "rotation": {
+      "dimensions": [
+        3,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "data": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "is_placeholder": false
+    },
+    "local_pose": {
+      "dimensions": [
+        4,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": true
+    },
+    "left_eye_transform": {
+      "dimensions": [
+        4,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": false
+    },
+    "right_eye_transform": {
+      "dimensions": [
+        4,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": true
+    },
+    "frame_pose": {
+      "dimensions": [
+        4,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 263
+    },
+    "threshold": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "data": [
+        0.3
+      ],
+      "is_placeholder": false
+    },
+    "frame_visible": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 4,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 263
+    },
+    "text_start": {
+      "dimensions": [
+        1
+      ],
+      "channels": 2,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 1,
+      "data": [
+        0.1,
+        0.65
+      ]
+    },
+    "text_colors": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        0,
+        0,
+        0,
+        255,
+        255,
+        255,
+        255,
+        240
+      ]
+    },
+    "text_texture_id": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        0
+      ]
+    },
+    "text_font_size": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        440.0
+      ]
+    },
+    "confidence_text": {
+      "dimensions": [
+        4
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        48,
+        37,
+        32,
+        32
+      ]
+    },
+    "point_xyz_scaled": {
+      "dimensions": [
+        3,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "usage": 6,
+      "flag": 263,
+      "is_placeholder": true
+    }
+  },
+  "operators": [
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO",
+      "inputs": [
+        {
+          "tensor": "post_det"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "score"
+        }
+      ],
+      "src_slices": [
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "det",
+          "tensor": "post_det"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "uv",
+          "tensor": "image_point"
+        }
+      ],
+      "attrs": [
+        "var det;\nvar uv;\nuv[0] = Math.round((det[0] + det[2]) * 0.5);\nuv[1] = Math.round((det[1] + det[3]) * 0.5);\n"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_UV_TO_3D_IN_CAM_SPACE_PICO",
+      "inputs": [
+        {
+          "tensor": "image_point"
+        },
+        {
+          "tensor": "vst_timestamp"
+        },
+        {
+          "tensor": "vst_camera_matrix"
+        },
+        {
+          "tensor": "vst_left_image"
+        },
+        {
+          "tensor": "vst_right_image"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "point_xyz_array"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "point",
+          "tensor": "point_xyz_array"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "translation",
+          "tensor": "point_xyz_scaled"
+        }
+      ],
+      "attrs": [
+        "var point;\nvar translation;\ntranslation[0] = point[0];\ntranslation[1] = -point[1];\ntranslation[2] = point[2] + 0.03;\n"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "det",
+          "tensor": "post_det"
+        },
+        {
+          "name": "point",
+          "tensor": "point_xyz_array"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "scale",
+          "tensor": "frame_scale"
+        }
+      ],
+      "attrs": [
+        "var det;\nvar point;\nvar scale;\nvar depth = Math.max(Math.abs(point[2]), 0.1);\nvar widthMeters = Math.max(det[2] - det[0], 1.0) * depth / 368.85532;\nvar heightMeters = Math.max(det[3] - det[1], 1.0) * depth / 276.44321;\nscale[0] = widthMeters / 10.0;\nscale[1] = heightMeters / 10.0;\nscale[2] = 0.002;\n"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_MAKE_TRANSFORM_MAT_PICO",
+      "inputs": [
+        {
+          "tensor": "rotation"
+        },
+        {
+          "tensor": "point_xyz_scaled"
+        },
+        {
+          "tensor": "frame_scale"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "local_pose"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "det",
+          "tensor": "post_det"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "tensor": "confidence_text"
+        }
+      ],
+      "attrs": [
+        "var det;\nvar text;\nvar percent = Math.max(0, Math.min(100, Math.round(det[4] * 100.0)));\ntext[0] = percent >= 100 ? 49 : (percent >= 10 ? 48 + Math.floor(percent / 10) : 48 + percent);\ntext[1] = percent >= 100 ? 48 : (percent >= 10 ? 48 + (percent % 10) : 37);\ntext[2] = percent >= 100 ? 48 : (percent >= 10 ? 37 : 32);\ntext[3] = percent >= 100 ? 37 : 32;\n"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_CAMERA_SPACE_TO_WORLD_PICO",
+      "inputs": [
+        {
+          "tensor": "vst_timestamp"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "right_eye_transform"
+        },
+        {
+          "tensor": "left_eye_transform"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO",
+      "inputs": [
+        {
+          "tensor": "left_eye_transform"
+        },
+        {
+          "tensor": "local_pose"
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "outputs": [
+        {
+          "tensor": "frame_pose"
+        }
+      ],
+      "attrs": [
+        "({0} * {1})"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_CUSTOMIZED_COMPARE_PICO",
+      "inputs": [
+        {
+          "tensor": "score"
+        },
+        {
+          "tensor": "threshold"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "frame_visible"
+        }
+      ],
+      "attrs": [
+        ">"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "confidence_text"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors"
+        },
+        {
+          "tensor": "frame_gltf"
+        },
+        {
+          "tensor": "text_texture_id"
+        },
+        {
+          "tensor": "text_font_size"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "sans_serif#en-us#1024#1024"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO",
+      "inputs": [
+        {
+          "tensor": "frame_gltf"
+        },
+        {
+          "tensor": "frame_pose"
+        },
+        {
+          "tensor": "frame_visible"
+        },
+        null
+      ],
+      "outputs": []
+    }
+  ],
+  "inputs": [
+    "post_det",
+    "vst_left_image",
+    "vst_right_image",
+    "vst_timestamp",
+    "vst_camera_matrix"
+  ],
+  "outputs": [
+    "point_xyz_array",
+    "point_xyz_scaled",
+    "frame_scale",
+    "local_pose",
+    "right_eye_transform",
+    "frame_pose",
+    "frame_visible"
+  ]
+}

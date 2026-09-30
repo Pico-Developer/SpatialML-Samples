@@ -1,0 +1,81 @@
+{
+  "tensors": {
+    "body_transforms":{"dimensions":[13,4,4],"channels":1,"data_type":6,"is_placeholder":true,"usage":6},
+    "score":{"dimensions":[1],"channels":1,"data_type":5,"is_placeholder":true,"usage":2},
+    "mole_visible":{"dimensions":[5],"channels":1,"data_type":2,"is_placeholder":true,"usage":2},
+    "mole_transforms":{"dimensions":[5,4,4],"channels":1,"data_type":6,"is_placeholder":true,"usage":6},
+    "pose_gltf":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/pose_marker.gltf"},
+    "pose_node_ids":{"dimensions":[13],"channels":1,"data_type":3,"is_placeholder":false,"usage":2,"data":[0,1,2,3,4,5,6,7,8,9,10,11,12]},
+    "pose_stage":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[1,0,0,0.6,0,1,0,-0.2,0,0,1,-2.5,0,0,0,1]},
+    "pose_visible":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2,"data":[1]},
+    "view_locked":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2,"data":[1]},
+    "duck0":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/Duck.gltf"},
+    "duck1":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/Duck.gltf"},
+    "duck2":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/Duck.gltf"},
+    "duck3":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/Duck.gltf"},
+    "duck4":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/Duck.gltf"},
+    "duck_pose0":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "duck_pose1":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "duck_pose2":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "duck_pose3":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "duck_pose4":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "duck_visible0":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2},
+    "duck_visible1":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2},
+    "duck_visible2":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2},
+    "duck_visible3":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2},
+    "duck_visible4":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2}
+    ,"scoreboard":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/scoreboard_panel.gltf"}
+    ,"scoreboard_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[0.8,0,0,-0.3,0,0.8,0,0.2,0,0,0.8,-1.4,0,0,0,1]}
+    ,"score_text_start":{"dimensions":[1],"channels":2,"data_type":6,"is_placeholder":false,"usage":1,"data":[0.5,0.5]}
+    ,"score_text_colors":{"dimensions":[2],"channels":4,"data_type":1,"is_placeholder":false,"usage":4,"data":[255,255,255,255,0,0,0,255]}
+    ,"score_texture":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":true,"usage":2}
+    ,"score_font_size":{"dimensions":[1],"channels":1,"data_type":6,"is_placeholder":false,"usage":2,"data":[64]}
+    ,"redbox0":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/redbox.gltf"}
+    ,"redbox1":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/redbox.gltf"}
+    ,"redbox2":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/redbox.gltf"}
+    ,"redbox3":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/redbox.gltf"}
+    ,"red_local0":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+    ,"red_local1":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+    ,"red_local2":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+    ,"red_local3":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+    ,"red_world0":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+    ,"red_world1":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+    ,"red_world2":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+    ,"red_world3":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPDATE_GLTF_PICO","inputs":[{"tensor":"pose_gltf"},{"tensor":"pose_node_ids"},{"tensor":"body_transforms"}],"outputs":[],"attrs":["local"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"pose_gltf"},{"tensor":"pose_stage"},{"tensor":"pose_visible"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_transforms"}],"outputs":[{"tensor":"duck_pose0"}],"src_slices":[[0,1],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_transforms"}],"outputs":[{"tensor":"duck_pose1"}],"src_slices":[[1,2],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_transforms"}],"outputs":[{"tensor":"duck_pose2"}],"src_slices":[[2,3],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_transforms"}],"outputs":[{"tensor":"duck_pose3"}],"src_slices":[[3,4],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_transforms"}],"outputs":[{"tensor":"duck_pose4"}],"src_slices":[[4,5],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_visible"}],"outputs":[{"tensor":"duck_visible0"}],"src_slices":[[0,1]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_visible"}],"outputs":[{"tensor":"duck_visible1"}],"src_slices":[[1,2]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_visible"}],"outputs":[{"tensor":"duck_visible2"}],"src_slices":[[2,3]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_visible"}],"outputs":[{"tensor":"duck_visible3"}],"src_slices":[[3,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"mole_visible"}],"outputs":[{"tensor":"duck_visible4"}],"src_slices":[[4,5]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"duck0"},{"tensor":"duck_pose0"},{"tensor":"duck_visible0"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"duck1"},{"tensor":"duck_pose1"},{"tensor":"duck_visible1"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"duck2"},{"tensor":"duck_pose2"},{"tensor":"duck_visible2"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"duck3"},{"tensor":"duck_pose3"},{"tensor":"duck_visible3"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"duck4"},{"tensor":"duck_pose4"},{"tensor":"duck_visible4"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO","inputs":[{"tensor":"score"},{"tensor":"score_text_start"},{"tensor":"score_text_colors"},{"tensor":"scoreboard"},{"tensor":"score_texture"},{"tensor":"score_font_size"}],"outputs":[],"attrs":["monospace#en-US#256#256"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"scoreboard"},{"tensor":"scoreboard_pose"},{"tensor":"pose_visible"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"body_transforms"}],"outputs":[{"tensor":"red_local0"}],"src_slices":[[2,3],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"body_transforms"}],"outputs":[{"tensor":"red_local1"}],"src_slices":[[3,4],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"body_transforms"}],"outputs":[{"tensor":"red_local2"}],"src_slices":[[8,9],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"body_transforms"}],"outputs":[{"tensor":"red_local3"}],"src_slices":[[9,10],[0,4],[0,4]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"pose_stage"},{"tensor":"red_local0"},null,null,null,null,null,null,null,null],"outputs":[{"tensor":"red_world0"}],"attrs":["({0} * {1})"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"pose_stage"},{"tensor":"red_local1"},null,null,null,null,null,null,null,null],"outputs":[{"tensor":"red_world1"}],"attrs":["({0} * {1})"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"pose_stage"},{"tensor":"red_local2"},null,null,null,null,null,null,null,null],"outputs":[{"tensor":"red_world2"}],"attrs":["({0} * {1})"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"pose_stage"},{"tensor":"red_local3"},null,null,null,null,null,null,null,null],"outputs":[{"tensor":"red_world3"}],"attrs":["({0} * {1})"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"redbox0"},{"tensor":"red_world0"},{"tensor":"pose_visible"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"redbox1"},{"tensor":"red_world1"},{"tensor":"pose_visible"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"redbox2"},{"tensor":"red_world2"},{"tensor":"pose_visible"},{"tensor":"view_locked"}],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"redbox3"},{"tensor":"red_world3"},{"tensor":"pose_visible"},{"tensor":"view_locked"}],"outputs":[]}
+  ],
+  "inputs": ["body_transforms","score","mole_visible","mole_transforms","score_texture"],
+  "outputs": []
+}

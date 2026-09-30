@@ -1,0 +1,21 @@
+{
+  "schema_version": "2",
+  "id": "stylize_pipeline",
+  "pipelines": [
+    {
+      "id": "style",
+      "path": "pipeline/stylize_inference_pipeline.json"
+    },
+    {
+      "id": "display",
+      "path": "pipeline/stylize_display_pipeline.json"
+    }
+  ],
+  "runtime": {
+    "supported_modes": [
+      "xr"
+    ],
+    "detection_tensor": "stylized_image"
+  }
+}
+

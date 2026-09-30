@@ -25,7 +25,7 @@ extern "C" {
 #endif
 
 JNIEXPORT void JNICALL
-Java_com_bytedance_pico_secure_1mr_1demo_readback_ReadbackActivity_nativeSetPermission(
+Java_com_bytedance_pico_spatial_1ml_1demo_readback_ReadbackActivity_nativeSetPermission(
     JNIEnv* env,
     jclass,
     jstring permission,

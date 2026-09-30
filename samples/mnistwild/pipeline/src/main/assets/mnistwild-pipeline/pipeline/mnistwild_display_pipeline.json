@@ -1,0 +1,32 @@
+{
+  "tensors": {
+    "cropped_image":{"dimensions":[224,224],"channels":3,"data_type":1,"is_placeholder":true,"usage":6},
+    "predicted_score":{"dimensions":[1],"channels":1,"data_type":6,"is_placeholder":true,"usage":2},
+    "predicted_class":{"dimensions":[1],"channels":1,"data_type":5,"is_placeholder":true,"usage":2},
+    "class_tv":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/tv.gltf"},
+    "score_tv":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/tv.gltf"},
+    "image_tv":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/tv.gltf"},
+    "class_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[0.5,0,0,-0.5,0,0.5,0,0,0,0,0.5,-1.5,0,0,0,1]},
+    "score_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[0.5,0,0,0.5,0,0.5,0,0,0,0,0.5,-1.5,0,0,0,1]},
+    "image_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[0.5,0,0,0,0,0.5,0,1,0,0,0.5,-1.5,0,0,0,1]},
+    "text_start":{"dimensions":[1],"channels":2,"data_type":6,"is_placeholder":false,"usage":1,"data":[0.1,0.3]},
+    "text_colors":{"dimensions":[2],"channels":4,"data_type":1,"is_placeholder":false,"usage":4,"data":[255,255,255,255,0,0,0,255]},
+    "class_texture":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":false,"usage":2,"data":[0]},
+    "score_texture":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":false,"usage":2,"data":[0]},
+    "font_size":{"dimensions":[1],"channels":1,"data_type":6,"is_placeholder":false,"usage":2,"data":[144]},
+    "image_texture":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":false,"usage":2},
+    "image_material":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":false,"usage":2,"data":[0]},
+    "visible":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2,"data":[1]}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO","inputs":[{"tensor":"predicted_class"},{"tensor":"text_start"},{"tensor":"text_colors"},{"tensor":"class_tv"},{"tensor":"class_texture"},{"tensor":"font_size"}],"outputs":[],"attrs":["sans_serif#en-us#1440#960"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO","inputs":[{"tensor":"predicted_score"},{"tensor":"text_start"},{"tensor":"text_colors"},{"tensor":"score_tv"},{"tensor":"score_texture"},{"tensor":"font_size"}],"outputs":[],"attrs":["sans_serif#en-us#1440#960"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPLOAD_TEXTURE_TO_GLTF_PICO","inputs":[{"tensor":"image_tv"},{"tensor":"cropped_image"}],"outputs":[{"tensor":"image_texture"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPDATE_GLTF_PICO","inputs":[{"tensor":"image_tv"},{"tensor":"image_material"},{"tensor":"image_texture"}],"outputs":[],"attrs":["material::base_color_texture"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"class_tv"},{"tensor":"class_pose"},{"tensor":"visible"},null],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"score_tv"},{"tensor":"score_pose"},{"tensor":"visible"},null],"outputs":[]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"image_tv"},{"tensor":"image_pose"},{"tensor":"visible"},null],"outputs":[]}
+  ],
+  "inputs": ["cropped_image","predicted_score","predicted_class"],
+  "outputs": []
+}

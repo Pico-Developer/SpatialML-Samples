@@ -1,0 +1,37 @@
+{
+  "tensors": {
+    "src_points":{"dimensions":[3],"channels":2,"data_type":6,"is_placeholder":false,"usage":1,"data":[1444,1332,2045,1332,2045,1933]},
+    "display_dst_points":{"dimensions":[3],"channels":2,"data_type":6,"is_placeholder":false,"usage":1,"data":[0,0,224,0,224,224]},
+    "model_dst_points":{"dimensions":[3],"channels":2,"data_type":6,"is_placeholder":false,"usage":1,"data":[0,0,28,0,28,28]},
+    "display_affine":{"dimensions":[2,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "model_affine":{"dimensions":[2,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "display_crop_rgb":{"dimensions":[224,224],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "model_crop_rgb":{"dimensions":[28,28],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "model_crop_gray":{"dimensions":[28,28],"channels":1,"data_type":1,"is_placeholder":false,"usage":6},
+    "model_crop_float":{"dimensions":[28,28],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "inputs_0":{"dimensions":[28,28],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "logits":{"dimensions":[1,10],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "cropped_image":{"dimensions":[224,224],"channels":3,"data_type":1,"is_placeholder":true,"usage":6},
+    "right_rgb":{"dimensions":[2464,3248],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "left_rgb":{"dimensions":[2464,3248],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "timestamp_tensor":{"dimensions":[1],"channels":4,"data_type":5,"is_placeholder":false,"usage":5},
+    "camera_matrix_tensor":{"dimensions":[3,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "predicted_score":{"dimensions":[1],"channels":1,"data_type":6,"is_placeholder":true,"usage":2},
+    "predicted_class":{"dimensions":[1],"channels":1,"data_type":5,"is_placeholder":true,"usage":2}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RECTIFIED_VST_ACCESS_PICO","inputs":[],"outputs":[{"tensor":"right_rgb"},{"tensor":"left_rgb"},{"tensor":"timestamp_tensor"},{"tensor":"camera_matrix_tensor"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_GET_AFFINE_PICO","inputs":[{"tensor":"src_points"},{"tensor":"display_dst_points"}],"outputs":[{"tensor":"display_affine"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_APPLY_AFFINE_PICO","inputs":[{"tensor":"display_affine"},{"tensor":"left_rgb"}],"outputs":[{"tensor":"display_crop_rgb"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"display_crop_rgb"}],"outputs":[{"tensor":"cropped_image"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_GET_AFFINE_PICO","inputs":[{"tensor":"src_points"},{"tensor":"model_dst_points"}],"outputs":[{"tensor":"model_affine"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_APPLY_AFFINE_PICO","inputs":[{"tensor":"model_affine"},{"tensor":"left_rgb"}],"outputs":[{"tensor":"model_crop_rgb"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_CONVERT_COLOR_PICO","inputs":[{"tensor":"model_crop_rgb"}],"outputs":[{"tensor":"model_crop_gray"}],"attrs":["7"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"model_crop_gray"}],"outputs":[{"tensor":"model_crop_float"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"model_crop_float"},null,null,null,null,null,null,null,null,null],"outputs":[{"tensor":"inputs_0"}],"attrs":["{0} / 255.0"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO","inputs":[{"name":"inputs_0","tensor":"inputs_0"}],"outputs":[{"name":"Identity","tensor":"logits"}],"model":{"bin_path":"model/mnist.tflite","model_name":"mnist","model_type":"tflite","model_target":"npu","input":[{"name":"inputs_0","shape":[1,28,28,1],"encoding_type":"FP32"}],"output":[{"name":"Identity","shape":[1,10],"encoding_type":"FP32"}]}},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO","inputs":[{"name":"logits","tensor":"logits"}],"outputs":[{"name":"predicted_score","tensor":"predicted_score"},{"name":"predicted_class","tensor":"predicted_class"}],"attrs":["var logits; var predicted_score; var predicted_class; var maxIndex=0; var maxLogit=logits[0]; for(var i=1;i<10;i++){if(logits[i]>maxLogit){maxLogit=logits[i];maxIndex=i;}} var denominator=0.0; for(var j=0;j<10;j++){denominator+=Math.exp(logits[j]-maxLogit);} predicted_class[0]=maxIndex; predicted_score[0]=1.0/denominator;"]}
+  ],
+  "inputs": [],
+  "outputs": ["cropped_image","predicted_score","predicted_class"]
+}

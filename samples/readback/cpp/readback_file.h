@@ -28,8 +28,8 @@
 #include "securemr_utils/session.h"
 #include "securemr_utils/readback.h"
 
-#define READBACK_MODEL_PATH "detection.serialized.bin"
-#define POSE_LANDMARK_MODEL_PATH "landmark.serialized.bin"
+#define READBACK_MODEL_PATH "detection.tflite"
+#define POSE_LANDMARK_MODEL_PATH "landmark.tflite"
 #define GLTF_PATH "pose_marker.gltf"
 #define ANCHOR_MAT "anchors_1.mat"
 #include "stb_image.h"
@@ -43,7 +43,7 @@ static std::mutex g_permMutex;
 static bool gPermissionCamera = false;
 
 JNIEXPORT void JNICALL
-Java_com_bytedance_pico_secure_1mr_1demo_readback_ReadbackActivity_nativeSetPermission(
+Java_com_bytedance_pico_spatial_1ml_1demo_readback_ReadbackActivity_nativeSetPermission(
     JNIEnv* env,
     jclass,
     jstring permission,

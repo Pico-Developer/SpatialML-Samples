@@ -1,30 +1,24 @@
-## Sample: UFO
+# UFO Face Tracking
 
-This sample builds an application for PICO using the
-SpatialML APIs. In the application, users become a
-pilot who remotely control a disc-shape UFO to chase
-human beings whoever they see. By simply looking 
-at other people's heads, the user will find their UFO
-flies towards the detected human being and floats
-above their head. 
+This sample uses SpatialML face detection to move a disc-shaped UFO toward a visible person and keep it floating above the detected face.
 
-The sample deploys an open-sourced face detection from
-MediaPipeline via SpatialML, and renders a UFO of
+The sample deploys the open-source MediaPipe face detector
+through LiteRT NPU and renders a UFO in
 glTF 2.0 format. 
 
 ![Demo for face tracking with an UFO chasing the detected face](../../docs/Demo-UFO.gif)
 
 ### Code walk-through
 
-The sample loads the algorithm from `asset/ufo/facedetector_fp16_qnn229.bin`, which is
-converted from Qualcomm's re-implementation of MediaPipe face detection. The UFO asset to be
-rendered is the `asset/ufo/UFO.gltf`, loaded to the global tensor: `gltfAsset`. 
+The sample loads the algorithm from `assets/UFO/face_detector.tflite`, which is
+the LiteRT/TFLite MediaPipe face detection model. The UFO asset to be
+rendered is `assets/UFO/UFO.gltf`, loaded to the global tensor `gltfAsset`.
 
-There are four pipelines in this sample: 
+There are four pipelines in this sample:
 
 1. `m_secureMrVSTImagePipeline` to obtain the RGB images. Although we only use the left-eye 
     image for face detection, we still need the stereo-view RGB outputs (in global tensor
-    `vstOutputLeftUint8Global` and `vstOutputLeftUint8Global` respectively), the image timestamp
+    `vstOutputLeftUint8Global` and `vstOutputRightUint8Global` respectively), the image timestamp
     (`vstTimestampGlobal`) and the camera matrix `vstCameraMatrixGlobal` for the 2D-to-3D pipeline
     to compute an accurate 3D position. 
 2. `m_secureMrModelInferencePipeline`, as the key pipeline, to run the face detection
@@ -37,3 +31,11 @@ There are four pipelines in this sample:
     coordinate in `currentPositionGlobal`. The pipeline also incorporates a damping algorithm
     to smooth the trajectory of UFO and mimicking the physics. The damped coordinate is
     updated to `previousPositionGlobal` for usage in the next frame. 
+
+### Build and run
+
+```sh
+./gradlew :samples:ufo:installDebug
+```
+
+Launch **UFO Face Tracking (Refactored)** and grant camera permission. The UFO should move toward the detected face and remain positioned above it. Successful runtime logs show LiteRT NPU initialization and repeated pipeline submissions with `err: 0`.

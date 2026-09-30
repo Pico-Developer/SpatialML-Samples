@@ -17,14 +17,27 @@ dependencyResolutionManagement {
 rootProject.name = "SpatialML Demos"
 include 'samples:ufo'
 include 'samples:pose'
-include 'samples:ufo_origin'
 include 'samples:yolo_det'
 include 'samples:mnistwild'
 include 'samples:rubics_cube'
-include 'samples:model_inspect'
 include 'samples:readback'
 include 'samples:whackamole'
 include 'samples:stylize'
 include 'samples:face_mediapipe_pipeline'
+include 'samples:pose_pipeline'
+include 'samples:whackamole_pipeline'
+include 'samples:stylize_pipeline'
+include 'samples:yolo_det_pipeline'
+include 'samples:mnistwild_pipeline'
 include ':spatialml-xr-utils'
+project(':samples:pose').projectDir = file('samples/pose/programmatic')
+project(':samples:yolo_det').projectDir = file('samples/yolo_det/programmatic')
+project(':samples:mnistwild').projectDir = file('samples/mnistwild/programmatic')
+project(':samples:whackamole').projectDir = file('samples/whackamole/programmatic')
+project(':samples:stylize').projectDir = file('samples/stylize/programmatic')
+project(':samples:pose_pipeline').projectDir = file('samples/pose/pipeline')
+project(':samples:whackamole_pipeline').projectDir = file('samples/whackamole/pipeline')
+project(':samples:stylize_pipeline').projectDir = file('samples/stylize/pipeline')
+project(':samples:yolo_det_pipeline').projectDir = file('samples/yolo_det/pipeline')
+project(':samples:mnistwild_pipeline').projectDir = file('samples/mnistwild/pipeline')
 project(':spatialml-xr-utils').projectDir = file('external/SpatialML-XR-Utils/spatialml-xr-utils')

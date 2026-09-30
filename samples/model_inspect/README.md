@@ -1,35 +1,34 @@
-# Sample: Model Inspect Tool
+# Model Inspect Tool
 
-This sample runs a single SpatialML model inference to validate a serialized model on device. It is primarily used as a diagnostic tool for checking model compatibility and performance on PICO 4 Ultra (OS 5.15+).
+This legacy diagnostic sample runs one serialized SpatialML model on a PICO device, logs its tensor metadata, and reads its outputs back to files. It is present in the source tree but is not included by the current root `settings.gradle`; add the module locally before invoking its Gradle task.
 
-## Prerequisites
+## Inputs
 
-- PICO 4 Ultra with OS version >= 5.15.0
-- Serialized SpatialML model files (.bin and .json)
+Push a serialized model and its metadata to a device directory, then point the app at that directory:
 
-## Usage
-
-1. Push your model files to the device and set the properties before launching the app:
-
-```
-adb push model.serialized.bin /data/local/tmp/my_model/
-adb push mode.serialized.json /data/local/tmp/my_model/   # falls back to model.serialized.json if needed
-adb shell setprop debug.securemr.model_inspect.model_dir /data/local/tmp/my_model
-
-# Optional input file applied to all model inputs (random data is generated if omitted)
-adb push input.bin /data/local/tmp/my_model/input.bin
-adb shell setprop debug.securemr.model_inspect.input /data/local/tmp/my_model/input.bin
+```sh
+adb -s <device-serial> push model.serialized.bin /data/local/tmp/my_model/
+adb -s <device-serial> push model.json /data/local/tmp/my_model/
+adb -s <device-serial> shell setprop debug.securemr.model_inspect.model_dir /data/local/tmp/my_model
 ```
 
-2. Build and install:
+An input file is optional; random input is generated when it is omitted:
 
+```sh
+adb -s <device-serial> push input.bin /data/local/tmp/my_model/input.bin
+adb -s <device-serial> shell setprop debug.securemr.model_inspect.input /data/local/tmp/my_model/input.bin
 ```
+
+After enabling the module, build and install it with:
+
+```sh
 ./gradlew :samples:model_inspect:installDebug
 ```
 
-3. Launch the app. Logs will describe the parsed tensors, input loading/generation, pipeline submission, and readback.
+Outputs are written as `model_inspect_output_<tensor>.bin` under:
 
-## Outputs
+```text
+/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.model_inspect/files/model_inspect/
+```
 
-- Outputs are read back via the SpatialML readback API and written under the app's external files directory (for example `/sdcard/Android/data/com.bytedance.pico.spatial_ml_demo.model_inspect/files/model_inspect/`) as `model_inspect_output_<tensor>.bin`.
-- Logcat will print a short preview of each output along with the tensor shape and data type for quick verification.
+Logcat also prints each output's tensor shape, data type, and a short value preview. This tool targets the older serialized-model contract; current active samples use LiteRT/TFLite models directly.

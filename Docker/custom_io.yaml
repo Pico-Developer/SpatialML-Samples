@@ -1,8 +1,0 @@
-- IOName: images
-  Layout:
-    Model: NCHW
-    Custom: NHWC
-- IOName: output0
-  Layout:
-    Model: NFC
-    Custom: NCF

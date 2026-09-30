@@ -43,7 +43,11 @@ FaceTracker::FaceTracker(const XrInstance& instance, const XrSession& session)
     : xr_instance(instance), xr_session(session) {}
 
 FaceTracker::~FaceTracker() {
-  keepRunning = false;
+  {
+    std::lock_guard<std::mutex> guard(initialized_mtx);
+    keepRunning = false;
+  }
+  initialized.notify_all();
   if (pipelineInitializer && pipelineInitializer->joinable()) {
     pipelineInitializer->join();
   }
@@ -59,18 +63,17 @@ void FaceTracker::CreateFramework() {
 }
 
 void FaceTracker::CreatePipelines() {
-  pipelineInitializer = std::make_unique<std::thread>([this]() {
-    // Note: global tensors must be created before they are referred
-    //       in each individual pipeline
-    CreateGlobalTensor();
-    CreateSecureMrVSTImagePipeline();
-    CreateSecureMrModelInferencePipeline();
-    CreateSecureMrMap2dTo3dPipeline();
-    CreateSecureMrRenderingPipeline();
-
-    initialized.notify_all();
+  // Finish model and pipeline registration before the OpenXR render loop starts.
+  CreateGlobalTensor();
+  CreateSecureMrVSTImagePipeline();
+  CreateSecureMrModelInferencePipeline();
+  CreateSecureMrMap2dTo3dPipeline();
+  CreateSecureMrRenderingPipeline();
+  {
+    std::lock_guard<std::mutex> guard(initialized_mtx);
     pipelineAllInitialized = true;
-  });
+  }
+  initialized.notify_all();
 }
 
 void FaceTracker::CreateGlobalTensor() {
@@ -120,7 +123,7 @@ void FaceTracker::RunPipelines() {
   pipelineRunners.emplace_back([this]() {
     {
       std::unique_lock<std::mutex> guard(initialized_mtx);
-      initialized.wait(guard);
+      initialized.wait(guard, [this]() { return pipelineAllInitialized || !keepRunning; });
     }
     while (keepRunning) {
       RunSecureMrVSTImagePipeline();
@@ -131,7 +134,7 @@ void FaceTracker::RunPipelines() {
   pipelineRunners.emplace_back([this]() {
     {
       std::unique_lock<std::mutex> guard(initialized_mtx);
-      initialized.wait(guard);
+      initialized.wait(guard, [this]() { return pipelineAllInitialized || !keepRunning; });
     }
     while (keepRunning) {
       RunSecureMrModelInferencePipeline();
@@ -142,7 +145,7 @@ void FaceTracker::RunPipelines() {
   pipelineRunners.emplace_back([this]() {
     {
       std::unique_lock<std::mutex> guard(initialized_mtx);
-      initialized.wait(guard);
+      initialized.wait(guard, [this]() { return pipelineAllInitialized || !keepRunning; });
     }
     while (keepRunning) {
       RunSecureMrMap2dTo3dPipeline();
@@ -153,7 +156,7 @@ void FaceTracker::RunPipelines() {
   pipelineRunners.emplace_back([this]() {
     {
       std::unique_lock<std::mutex> guard(initialized_mtx);
-      initialized.wait(guard);
+      initialized.wait(guard, [this]() { return pipelineAllInitialized || !keepRunning; });
     }
     while (keepRunning) {
       RunSecureMrRenderingPipeline();
@@ -201,9 +204,21 @@ void FaceTracker::CreateSecureMrModelInferencePipeline() {
   auto faceAnchor = std::make_shared<PipelineTensor>(
       m_secureMrModelInferencePipeline,
       TensorAttribute{.dimensions = {896, 16}, .channels = 1, .dataType = XR_SECURE_MR_TENSOR_DATA_TYPE_FLOAT32_PICO});
+  auto faceAnchor1 = std::make_shared<PipelineTensor>(
+      m_secureMrModelInferencePipeline,
+      TensorAttribute{.dimensions = {512, 16}, .channels = 1, .dataType = XR_SECURE_MR_TENSOR_DATA_TYPE_FLOAT32_PICO});
+  auto faceAnchor2 = std::make_shared<PipelineTensor>(
+      m_secureMrModelInferencePipeline,
+      TensorAttribute{.dimensions = {384, 16}, .channels = 1, .dataType = XR_SECURE_MR_TENSOR_DATA_TYPE_FLOAT32_PICO});
   auto faceScores = std::make_shared<PipelineTensor>(
       m_secureMrModelInferencePipeline,
       TensorAttribute_ScalarArray{.size = 896, .dataType = XR_SECURE_MR_TENSOR_DATA_TYPE_FLOAT32_PICO});
+  auto faceScores1 = std::make_shared<PipelineTensor>(
+      m_secureMrModelInferencePipeline,
+      TensorAttribute_ScalarArray{.size = 512, .dataType = XR_SECURE_MR_TENSOR_DATA_TYPE_FLOAT32_PICO});
+  auto faceScores2 = std::make_shared<PipelineTensor>(
+      m_secureMrModelInferencePipeline,
+      TensorAttribute_ScalarArray{.size = 384, .dataType = XR_SECURE_MR_TENSOR_DATA_TYPE_FLOAT32_PICO});
   auto bestFaceScore = std::make_shared<PipelineTensor>(
       m_secureMrModelInferencePipeline,
       TensorAttribute_ScalarArray{.size = 1, .dataType = XR_SECURE_MR_TENSOR_DATA_TYPE_FLOAT32_PICO});
@@ -255,8 +270,16 @@ void FaceTracker::CreateSecureMrModelInferencePipeline() {
   if (std::vector<char> modelData; LoadModelData(FACE_DETECTION_MODEL_PATH, modelData)) {
     (*m_secureMrModelInferencePipeline)
         .runAlgorithm(modelData.data(), modelData.size(), {{"image", vstImagePlaceholder}}, {},
-                      {{"face_anchor", faceAnchor}, {"score", faceScores}},
-                      {{"face_anchor", "box_coords"}, {"score", "box_scores"}}, "face")
+                      {{"box_coords_1", faceAnchor1},
+                       {"box_coords_2", faceAnchor2},
+                       {"box_scores_1", faceScores1},
+                       {"box_scores_2", faceScores2}},
+                      {},
+                      "face", XR_SECURE_MR_MODEL_TYPE_LITE_RT_MODEL_PICO, XR_SECURE_MR_MODEL_TARGET_NPU_PICO)
+        .assignment(faceAnchor1, (*faceAnchor)[{{0, 512}, {0, -1}}])
+        .assignment(faceAnchor2, (*faceAnchor)[{{512, 896}, {0, -1}}])
+        .assignment(faceScores1, (*faceScores)[std::vector<std::vector<int>>{{0, 512}}])
+        .assignment(faceScores2, (*faceScores)[std::vector<std::vector<int>>{{512, 896}}])
         .assignment((*anchorMatTensor)[{{0, -1}, {0, 2}}], (*anchorMatTensor)[{{0, -1}, {2, 4}}])
         .assignment((*faceAnchor)[{{0, -1}, {4, 8}}], faceLandmarks)
         .arithmetic("({0} / 256.0 + {1}) * 256.0", {faceLandmarks, anchorMatTensor}, faceLandmarks)

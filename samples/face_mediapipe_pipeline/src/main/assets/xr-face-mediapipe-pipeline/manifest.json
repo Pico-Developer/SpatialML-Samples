@@ -1,0 +1,20 @@
+{
+  "schema_version": "2",
+  "id": "face",
+  "pipelines": [
+    {
+      "id": "detection",
+      "path": "pipeline/face_detection_pipeline.json"
+    },
+    {
+      "id": "display",
+      "path": "pipeline/face_display_pipeline.json"
+    }
+  ],
+  "runtime": {
+    "supported_modes": [
+      "xr"
+    ],
+    "detection_tensor": "post_det"
+  }
+}

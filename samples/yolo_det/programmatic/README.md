@@ -1,0 +1,67 @@
+# YOLO Object Detection
+
+This sample builds an application for PICO using the SpatialML
+APIs. The application demonstrates real-time object detection
+using a YOLOv11 model in LiteRT (TFLite) format on NPU.
+
+![Demo of YOLO making detections on objects on the desk](../../../docs/Demo-YOLO.gif)
+
+### Code Walk-through
+
+The implementation follows a pipeline-based architecture with four main stages:
+
+1. **VST Image Pipeline**
+   - Handles camera feed processing
+   - Converts raw camera input to appropriate formats (uint8 and fp32)
+   - Manages camera timestamps and matrices
+
+2. **Model Inference Pipeline**
+   - Processes the prepared images through the YOLO model
+   - Performs class selection and NMS (Non-Maximum Suppression)
+   - Outputs bounding boxes and confidence scores
+
+3. **2D to 3D Mapping Pipeline**
+   - Maps 2D detection results to 3D space
+   - Uses stereo camera information for depth estimation
+   - Generates 3D coordinates for detected objects
+
+4. **Rendering Pipeline**
+   - Visualizes detection results in the XR environment
+   - Renders bounding boxes and labels using GLTF assets
+   - Handles scale and positioning of visual elements
+
+### Key Components
+
+The `YoloDetector` class in `programmatic/cpp/yolo_object_detection.h` manages:
+
+- **Framework Setup**: Initializes SpatialML runtime and pipeline components
+- **Pipeline Management**: Creates and coordinates four main processing pipelines
+- **Data Flow**: Uses GlobalTensors for inter-pipeline communication
+- **Resource Management**: Handles GLTF assets and tensor memory
+- **Threading**: Implements multi-threaded pipeline execution
+
+### Configuration
+
+- Model path: `yolom.tflite`
+- Model target: LiteRT NPU
+- GLTF asset path: `frame2.gltf`
+- Supports both left and right camera inputs for stereo processing
+
+### Technical Details
+
+The implementation uses SpatialML's pipeline architecture for efficient:
+- Tensor operations
+- Multi-threaded execution
+- Hardware-accelerated processing
+- XR session management
+- Real-time visualization
+
+Each pipeline can be monitored and controlled independently, with synchronized data flow managed through global tensors.
+
+### Build and run
+
+```sh
+./gradlew :samples:yolo_det:installDebug
+```
+
+Launch **YOLO Object Detection**, grant camera permission, and look toward recognizable objects. The app renders up to three non-max-suppressed detections with class labels. Successful runtime logs contain repeated `OpenMR: executePipeline ... err: 0` entries.

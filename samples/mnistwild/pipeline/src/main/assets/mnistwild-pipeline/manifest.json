@@ -1,0 +1,21 @@
+{
+  "schema_version": "2",
+  "id": "mnistwild_pipeline",
+  "pipelines": [
+    {
+      "id": "inference",
+      "path": "pipeline/mnistwild_inference_pipeline.json"
+    },
+    {
+      "id": "display",
+      "path": "pipeline/mnistwild_display_pipeline.json"
+    }
+  ],
+  "runtime": {
+    "supported_modes": [
+      "xr"
+    ],
+    "detection_tensor": "predicted_score"
+  }
+}
+

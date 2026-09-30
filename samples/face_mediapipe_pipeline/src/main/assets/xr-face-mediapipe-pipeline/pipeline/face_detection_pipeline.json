@@ -1,0 +1,424 @@
+{
+  "tensors": {
+    "full_affine": {
+      "dimensions": [
+        2,
+        3
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263,
+      "data": [
+        0.4413793087,
+        0.0,
+        0.0,
+        0.0,
+        0.7852760736,
+        0.0
+      ]
+    },
+    "warped_bgr": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 259
+    },
+    "warped_rgb": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 259
+    },
+    "warped_rgb_f32": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "channels": 3,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263
+    },
+    "model_input": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "channels": 3,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263
+    },
+    "box_coords_1": {
+      "dimensions": [
+        512,
+        16
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263
+    },
+    "box_coords_2": {
+      "dimensions": [
+        384,
+        16
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263
+    },
+    "box_scores_1": {
+      "dimensions": [
+        512,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263
+    },
+    "box_scores_2": {
+      "dimensions": [
+        384,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263
+    },
+    "post_det": {
+      "dimensions": [
+        1,
+        21
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 263
+    },
+    "post_det_template": {
+      "dimensions": [
+        1,
+        21
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263,
+      "data": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "vst_left_image": {
+      "dimensions": [
+        326,
+        580
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 259
+    },
+    "vst_right_image": {
+      "dimensions": [
+        326,
+        580
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 259
+    },
+    "vst_timestamp": {
+      "dimensions": [
+        1
+      ],
+      "channels": 4,
+      "data_type": 5,
+      "is_placeholder": true,
+      "usage": 5
+    },
+    "vst_camera_matrix": {
+      "dimensions": [
+        3,
+        3
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6,
+      "flag": 263
+    },
+    "model_input_f32_template": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "channels": 3,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "flag": 263
+    }
+  },
+  "operators": [
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RECTIFIED_VST_ACCESS_PICO",
+      "inputs": [],
+      "outputs": [
+        {
+          "tensor": "vst_right_image"
+        },
+        {
+          "tensor": "vst_left_image"
+        },
+        {
+          "tensor": "vst_timestamp"
+        },
+        {
+          "tensor": "vst_camera_matrix"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_APPLY_AFFINE_PICO",
+      "inputs": [
+        {
+          "tensor": "full_affine"
+        },
+        {
+          "tensor": "vst_left_image"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "warped_bgr"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_CONVERT_COLOR_PICO",
+      "inputs": [
+        {
+          "tensor": "warped_bgr"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "warped_rgb"
+        }
+      ],
+      "attrs": [
+        "4"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO",
+      "inputs": [
+        {
+          "tensor": "warped_rgb"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "warped_rgb_f32"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO",
+      "inputs": [
+        {
+          "tensor": "warped_rgb_f32"
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "outputs": [
+        {
+          "tensor": "model_input"
+        }
+      ],
+      "attrs": [
+        "({0} / 255.0)"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO",
+      "inputs": [
+        {
+          "name": "image",
+          "tensor": "model_input"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "box_coords_1",
+          "tensor": "box_coords_1"
+        },
+        {
+          "name": "box_coords_2",
+          "tensor": "box_coords_2"
+        },
+        {
+          "name": "box_scores_1",
+          "tensor": "box_scores_1"
+        },
+        {
+          "name": "box_scores_2",
+          "tensor": "box_scores_2"
+        }
+      ],
+      "model": {
+        "bin_path": "model/face_detector.tflite",
+        "model_name": "main",
+        "model_type": "tflite",
+      "model_target": "npu",
+        "input": [
+          {
+            "name": "image",
+            "shape": [
+              1,
+              256,
+              256,
+              3
+            ],
+            "encoding_type": "FP32"
+          }
+        ],
+        "output": [
+          {
+            "name": "box_coords_1",
+            "shape": [
+              1,
+              512,
+              16
+            ],
+            "encoding_type": "FP32"
+          },
+          {
+            "name": "box_coords_2",
+            "shape": [
+              1,
+              384,
+              16
+            ],
+            "encoding_type": "FP32"
+          },
+          {
+            "name": "box_scores_1",
+            "shape": [
+              1,
+              512,
+              1
+            ],
+            "encoding_type": "FP32"
+          },
+          {
+            "name": "box_scores_2",
+            "shape": [
+              1,
+              384,
+              1
+            ],
+            "encoding_type": "FP32"
+          }
+        ]
+      }
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "box_coords_1",
+          "tensor": "box_coords_1"
+        },
+        {
+          "name": "box_coords_2",
+          "tensor": "box_coords_2"
+        },
+        {
+          "name": "box_scores_1",
+          "tensor": "box_scores_1"
+        },
+        {
+          "name": "box_scores_2",
+          "tensor": "box_scores_2"
+        },
+        {
+          "name": "post_det_template",
+          "tensor": "post_det_template"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "post_det",
+          "tensor": "post_det"
+        }
+      ],
+      "attrs": [
+        "var box_coords_1;\nvar box_coords_2;\nvar box_scores_1;\nvar box_scores_2;\nvar post_det_template;\nvar post_det;\n\nvar INPUT_SIZE = 256.0;\nvar CAMERA_WIDTH = 580.0;\nvar CAMERA_HEIGHT = 326.0;\nvar AFFINE_SCALE_X = 0.4413793087;\nvar AFFINE_SCALE_Y = 0.7852760736;\nvar AFFINE_X_OFFSET = 0.0;\nvar AFFINE_Y_OFFSET = 0.0;\nvar SCORE_THRESHOLD = 0.25;\n\nfunction clamp(v, lo, hi) {\n  if (v < lo) return lo;\n  if (v > hi) return hi;\n  return v;\n}\n\nfunction sigmoid(v) {\n  return 1.0 / (1.0 + Math.exp(-v));\n}\n\nfunction copyEmptyDetection() {\n  for (var i = 0; i < 21; i++) {\n    post_det[i] = post_det_template[i];\n  }\n}\n\nfunction anchorFor(head, index) {\n  // MediaPipe face detector SSD anchors are grouped as 16x16x2 + 8x8x6.\n  // fixed_anchor_size is used, so only the normalized anchor center is needed.\n  var featureSize = head == 1 ? 16 : 8;\n  var anchorsPerCell = head == 1 ? 2 : 6;\n  var cell = Math.floor(index / anchorsPerCell);\n  var col = cell % featureSize;\n  var row = Math.floor(cell / featureSize);\n  return [(col + 0.5) / featureSize, (row + 0.5) / featureSize];\n}\n\nfunction toCameraX(x) {\n  return clamp((x - AFFINE_X_OFFSET) / AFFINE_SCALE_X, 0.0, CAMERA_WIDTH);\n}\n\nfunction toCameraY(y) {\n  return clamp((y - AFFINE_Y_OFFSET) / AFFINE_SCALE_Y, 0.0, CAMERA_HEIGHT);\n}\n\nfunction decodeDetection(coords, index, head, score) {\n  var base = index * 16;\n  var anchor = anchorFor(head, index);\n\n  // LiteRT face_detector.tflite outputs MediaPipe SSD regressors, not xyxy pixels.\n  // Decode x/y center and size from anchor-relative normalized offsets into the\n  // 256x256 affine input, then map back into VST image coordinates for display.\n  var xCenter = (coords[base + 0] / INPUT_SIZE + anchor[0]) * INPUT_SIZE;\n  var yCenter = (coords[base + 1] / INPUT_SIZE + anchor[1]) * INPUT_SIZE;\n  var boxW = coords[base + 2];\n  var boxH = coords[base + 3];\n\n  var x1 = xCenter - boxW * 0.5;\n  var y1 = yCenter - boxH * 0.5;\n  var x2 = xCenter + boxW * 0.5;\n  var y2 = yCenter + boxH * 0.5;\n\n  post_det[0] = toCameraX(x1);\n  post_det[1] = toCameraY(y1);\n  post_det[2] = toCameraX(x2);\n  post_det[3] = toCameraY(y2);\n  post_det[4] = score;\n  post_det[5] = 0.0;\n\n  for (var kp = 0; kp < 5; kp++) {\n    var coordBase = base + 4 + kp * 2;\n    var outBase = 6 + kp * 3;\n    var kpX = (coords[coordBase] / INPUT_SIZE + anchor[0]) * INPUT_SIZE;\n    var kpY = (coords[coordBase + 1] / INPUT_SIZE + anchor[1]) * INPUT_SIZE;\n    post_det[outBase] = toCameraX(kpX);\n    post_det[outBase + 1] = toCameraY(kpY);\n    post_det[outBase + 2] = score;\n  }\n}\n\ncopyEmptyDetection();\n\nvar bestScore = 0.0;\nvar bestIndex = -1;\nvar bestHead = 0;\nfor (var i = 0; i < 512; i++) {\n  var score1 = sigmoid(box_scores_1[i]);\n  if (score1 > bestScore) {\n    bestScore = score1;\n    bestIndex = i;\n    bestHead = 1;\n  }\n}\nfor (var j = 0; j < 384; j++) {\n  var score2 = sigmoid(box_scores_2[j]);\n  if (score2 > bestScore) {\n    bestScore = score2;\n    bestIndex = j;\n    bestHead = 2;\n  }\n}\n\nif (bestScore > SCORE_THRESHOLD && bestIndex >= 0) {\n  decodeDetection(bestHead == 1 ? box_coords_1 : box_coords_2, bestIndex, bestHead, bestScore);\n}\n"
+      ]
+    }
+  ],
+  "inputs": [],
+  "outputs": [
+    "post_det",
+    "vst_left_image",
+    "vst_right_image",
+    "vst_timestamp",
+    "vst_camera_matrix"
+  ]
+}

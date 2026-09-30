@@ -1,0 +1,41 @@
+{
+  "tensors": {
+    "vst_right":{"dimensions":[640,640],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "vst_left":{"dimensions":[640,640],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "vst_timestamp":{"dimensions":[1],"channels":4,"data_type":5,"is_placeholder":false,"usage":5},
+    "vst_camera_matrix":{"dimensions":[3,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "image_f32":{"dimensions":[640,640],"channels":3,"data_type":6,"is_placeholder":false,"usage":6},
+    "model_output":{"dimensions":[8400,84],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "detection":{"dimensions":[1,6],"channels":1,"data_type":6,"is_placeholder":true,"usage":6},
+    "image_point_mat":{"dimensions":[1,2],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "image_point":{"dimensions":[1],"channels":2,"data_type":5,"is_placeholder":false,"usage":1},
+    "point_xyz_array":{"dimensions":[1],"channels":3,"data_type":6,"is_placeholder":false,"usage":1},
+    "point_xyz":{"dimensions":[1,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "frame_translation":{"dimensions":[1,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "frame_scale":{"dimensions":[3,1],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "rotation":{"dimensions":[3,1],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[0.0,0.0,0.0]},
+    "local_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "right_eye_transform":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "left_eye_transform":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "world_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "frame_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":true,"usage":6}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RECTIFIED_VST_ACCESS_PICO","inputs":[],"outputs":[{"tensor":"vst_left"},{"tensor":"vst_right"},{"tensor":"vst_timestamp"},{"tensor":"vst_camera_matrix"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"vst_left"}],"outputs":[{"tensor":"image_f32"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"image_f32"},null,null,null,null,null,null,null,null,null],"outputs":[{"tensor":"image_f32"}],"attrs":["({0} / 255.0)"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO","inputs":[{"name":"images","tensor":"image_f32"}],"outputs":[{"name":"output0","tensor":"model_output"}],"model":{"bin_path":"model/yolom.tflite","model_name":"yolo","model_type":"tflite","model_target":"npu","input":[{"name":"images","shape":[1,640,640,3],"encoding_type":"FP32"}],"output":[{"name":"output0","shape":[1,8400,84],"encoding_type":"FP32"}]}},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO","inputs":[{"name":"model_output","tensor":"model_output"}],"outputs":[{"name":"detection","tensor":"detection"}],"attrs":["var model_output; var detection; var best=-1000.0; var bestRow=0; var bestClass=0; for(var r=0;r<8400;r++){var base=r*84; for(var c=0;c<80;c++){var s=model_output[base+4+c]; if(s>best){best=s; bestRow=r; bestClass=c;}}} var b=bestRow*84; detection[0]=model_output[b]; detection[1]=model_output[b+1]; detection[2]=model_output[b+2]; detection[3]=model_output[b+3]; detection[4]=best; detection[5]=bestClass;"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"detection"}],"outputs":[{"tensor":"image_point_mat"}],"src_slices":[[0,1],[0,2]]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"image_point_mat"}],"outputs":[{"tensor":"image_point"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UV_TO_3D_IN_CAM_SPACE_PICO","inputs":[{"tensor":"image_point"},{"tensor":"vst_timestamp"},{"tensor":"vst_camera_matrix"},{"tensor":"vst_left"},{"tensor":"vst_right"}],"outputs":[{"tensor":"point_xyz_array"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"point_xyz_array"}],"outputs":[{"tensor":"point_xyz"}],"src_slices":[[0,1]],"src_channel_slice":[0,3]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO","inputs":[{"name":"detection","tensor":"detection"},{"name":"point_xyz","tensor":"point_xyz"}],"outputs":[{"name":"frame_translation","tensor":"frame_translation"},{"name":"frame_scale","tensor":"frame_scale"}],"attrs":["var detection; var point_xyz; var frame_translation; var frame_scale; var depth=point_xyz[2]; var ratio=Math.min(depth,-1.5)/depth; frame_translation[0]=point_xyz[0]*ratio+0.1; frame_translation[1]=-point_xyz[1]*ratio; frame_translation[2]=point_xyz[2]*ratio; frame_scale[0]=detection[2]/2000.0; frame_scale[1]=detection[3]/2000.0; frame_scale[2]=0.05;"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_MAKE_TRANSFORM_MAT_PICO","inputs":[{"tensor":"rotation"},{"tensor":"frame_translation"},{"tensor":"frame_scale"}],"outputs":[{"tensor":"local_pose"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_CAMERA_SPACE_TO_WORLD_PICO","inputs":[{"tensor":"vst_timestamp"}],"outputs":[{"tensor":"right_eye_transform"},{"tensor":"left_eye_transform"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"left_eye_transform"},{"tensor":"local_pose"},null,null,null,null,null,null,null,null],"outputs":[{"tensor":"world_pose"}],"attrs":["({0} * {1})"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO","inputs":[{"name":"world_pose","tensor":"world_pose"}],"outputs":[{"name":"frame_pose","tensor":"frame_pose"}],"attrs":["var world_pose; var frame_pose; for(var i=0;i<16;i++)frame_pose[i]=world_pose[i]; frame_pose[1]=0.0; frame_pose[4]=0.0; frame_pose[6]=0.0; frame_pose[9]=0.0;"]}
+  ],
+  "inputs": [],
+  "outputs": ["detection", "frame_pose"]
+}

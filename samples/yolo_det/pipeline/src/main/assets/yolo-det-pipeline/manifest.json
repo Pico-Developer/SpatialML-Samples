@@ -1,0 +1,21 @@
+{
+  "schema_version": "2",
+  "id": "yolo_det_pipeline",
+  "pipelines": [
+    {
+      "id": "inference",
+      "path": "pipeline/yolo_det_inference_pipeline.json"
+    },
+    {
+      "id": "display",
+      "path": "pipeline/yolo_det_display_pipeline.json"
+    }
+  ],
+  "runtime": {
+    "supported_modes": [
+      "xr"
+    ],
+    "detection_tensor": "detection"
+  }
+}
+

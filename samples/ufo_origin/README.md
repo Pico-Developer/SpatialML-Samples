@@ -1,29 +1,15 @@
-## Sample: UFO (Raw usage of C-API)
+# UFO Face Tracking: Raw C API Reference
 
-_The sample achieves exactly the same effect as_
-_the one in `${PROJ_ROOT}/samples/ufo`. However,_
-_the sample application is re-written using the_
-_raw C-API from the OpenXR extension for SpatialML,_
-_without usage of the utility classes provided in_
-_`${PROJ_ROOT}/external/SpatialML-XR-Utils/base/securemr_utils` to demonstrate:_
+This legacy implementation produces the same face-tracking effect as [`samples/ufo`](../ufo/README.md), but calls the SpatialML OpenXR extension directly instead of using the helpers in [`external/SpatialML-XR-Utils/base/securemr_utils`](../../external/SpatialML-XR-Utils/base/securemr_utils).
 
-1. _the most fundermental usage of the raw OpenXR extension, and_
-1. _the convenience that the utility classes provide_
+It is retained as a low-level API reference and is not included by the current root `settings.gradle`. The actively maintained UFO module is `:samples:ufo`.
 
-### Visual effect
+The sample performs these operations directly:
 
-This sample builds an application for PICO using the
-SpatialML APIs. In the application, users become a
-pilot who remotely control a disc-shape UFO to chase
-human beings whoever they see. By simply looking 
-at other people's heads, the user will find their UFO
-flys towards the detected human being and floats
-above their head. 
+1. Creates the SpatialML framework, tensors, pipelines, and operators with the OpenXR C API.
+2. Acquires stereo VST images and camera calibration.
+3. Runs MediaPipe face detection.
+4. Projects the selected face point into 3D.
+5. Updates and renders the UFO glTF transform.
 
-The sample deploys an open-sourced face detection from
-MediaPipeline via SpatialML, and renders a UFO of
-glTF 2.0 format. 
-
-### Code walk-through
-
-_**TODO**_
+See the [programmatic UFO README](../ufo/README.md) for the current model, behavior, and build command.

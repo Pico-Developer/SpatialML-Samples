@@ -1,0 +1,25 @@
+{
+  "schema_version": "2",
+  "id": "whackamole_pipeline",
+  "pipelines": [
+    {
+      "id": "inference",
+      "path": "pipeline/whackamole_inference_pipeline.json"
+    },
+    {
+      "id": "scoreboard_init",
+      "path": "pipeline/whackamole_scoreboard_init_pipeline.json"
+    },
+    {
+      "id": "display",
+      "path": "pipeline/whackamole_display_pipeline.json"
+    }
+  ],
+  "runtime": {
+    "supported_modes": [
+      "xr"
+    ],
+    "detection_tensor": "score"
+  }
+}
+

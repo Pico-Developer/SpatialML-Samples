@@ -14,6 +14,7 @@
 
 #pragma once
 #include "pch.h"
+#include <atomic>
 #include <fstream>
 #include <random>
 #include "logger.h"
@@ -25,7 +26,7 @@
 #include "securemr_utils/rendercommand.h"
 #include "securemr_utils/session.h"
 
-#define FACE_DETECTION_MODEL_PATH "facedetector_fp16_qnn229.bin"
+#define FACE_DETECTION_MODEL_PATH "face_detector.tflite"
 #define GLTF_PATH "UFO.gltf"
 #define ANCHOR_MAT "anchors_1.mat"
 
@@ -207,8 +208,8 @@ class FaceTracker : public ISecureMR {
   std::unique_ptr<std::thread> pipelineInitializer;
   std::condition_variable initialized;
   std::mutex initialized_mtx;
-  bool keepRunning = true;
-  bool pipelineAllInitialized = false;
+  std::atomic<bool> keepRunning{true};
+  std::atomic<bool> pipelineAllInitialized{false};
 };
 
 }  // namespace SecureMR

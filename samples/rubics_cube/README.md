@@ -20,7 +20,7 @@ Rendering and UI run in the OpenXR layer using the custom overlay and virtual cu
 ### How to Build and Run
 
 1. **Build and install**  
-   Connect your PICO 4 Ultra device and run:
+   Connect your PICO Space Pro device and run:
    ```bash
    ./gradlew :samples:rubics_cube:installDebug
    ```

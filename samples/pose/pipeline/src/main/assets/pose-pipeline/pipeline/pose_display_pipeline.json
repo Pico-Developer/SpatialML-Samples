@@ -1,0 +1,16 @@
+{
+  "tensors": {
+    "body_transforms":{"dimensions":[13,4,4],"channels":1,"data_type":6,"is_placeholder":true,"usage":6},
+    "pose_gltf":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/pose_marker.gltf"},
+    "node_ids":{"dimensions":[13],"channels":1,"data_type":3,"is_placeholder":false,"usage":2,"data":[0,1,2,3,4,5,6,7,8,9,10,11,12]},
+    "stage_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[0.8,0,0,0.66,0,0.8,0,-0.5,0,0,0.8,-1.5,0,0,0,1]},
+    "visible":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2,"data":[1]},
+    "view_locked":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2,"data":[1]}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPDATE_GLTF_PICO","inputs":[{"tensor":"pose_gltf"},{"tensor":"node_ids"},{"tensor":"body_transforms"}],"outputs":[],"attrs":["local"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"pose_gltf"},{"tensor":"stage_pose"},{"tensor":"visible"},{"tensor":"view_locked"}],"outputs":[]}
+  ],
+  "inputs": ["body_transforms"],
+  "outputs": []
+}

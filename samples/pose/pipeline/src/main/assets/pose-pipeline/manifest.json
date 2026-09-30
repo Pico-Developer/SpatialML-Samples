@@ -1,0 +1,21 @@
+{
+  "schema_version": "2",
+  "id": "pose_pipeline",
+  "pipelines": [
+    {
+      "id": "inference",
+      "path": "pipeline/pose_inference_pipeline.json"
+    },
+    {
+      "id": "display",
+      "path": "pipeline/pose_display_pipeline.json"
+    }
+  ],
+  "runtime": {
+    "supported_modes": [
+      "xr"
+    ],
+    "detection_tensor": "pose_score"
+  }
+}
+

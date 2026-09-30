@@ -1,0 +1,18 @@
+{
+  "tensors": {
+    "stylized_image":{"dimensions":[384,384],"channels":3,"data_type":1,"is_placeholder":true,"usage":6},
+    "portal":{"dimensions":[1,1],"channels":1,"data_type":1,"is_placeholder":true,"usage":7,"is_gltf":true,"asset":"gltf/portal.gltf"},
+    "portal_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":true,"usage":6},
+    "portal_texture":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":false,"usage":2},
+    "material_id":{"dimensions":[1],"channels":1,"data_type":3,"is_placeholder":false,"usage":2,"data":[1]},
+    "visible":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2,"data":[1]},
+    "view_locked":{"dimensions":[1],"channels":1,"data_type":2,"is_placeholder":false,"usage":2,"data":[1]}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPLOAD_TEXTURE_TO_GLTF_PICO","inputs":[{"tensor":"portal"},{"tensor":"stylized_image"}],"outputs":[{"tensor":"portal_texture"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UPDATE_GLTF_PICO","inputs":[{"tensor":"portal"},{"tensor":"material_id"},{"tensor":"portal_texture"}],"outputs":[],"attrs":["material::base_color_texture"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_SWITCH_GLTF_RENDER_STATUS_PICO","inputs":[{"tensor":"portal"},{"tensor":"portal_pose"},{"tensor":"visible"},{"tensor":"view_locked"}],"outputs":[]}
+  ],
+  "inputs": ["stylized_image","portal","portal_pose"],
+  "outputs": []
+}

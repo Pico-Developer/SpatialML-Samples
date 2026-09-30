@@ -1,0 +1,33 @@
+{
+  "tensors": {
+    "vst_right":{"dimensions":[2048,1536],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "vst_left":{"dimensions":[2048,1536],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "vst_timestamp":{"dimensions":[1],"channels":4,"data_type":5,"is_placeholder":false,"usage":5},
+    "vst_camera_matrix":{"dimensions":[3,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "style_image":{"dimensions":[256,256],"channels":3,"data_type":1,"is_placeholder":true,"usage":6},
+    "style_f32":{"dimensions":[256,256],"channels":3,"data_type":6,"is_placeholder":false,"usage":6},
+    "src_points":{"dimensions":[3,1],"channels":2,"data_type":6,"is_placeholder":true,"usage":6},
+    "dst_points":{"dimensions":[3,1],"channels":2,"data_type":6,"is_placeholder":false,"usage":6,"data":[0,0,384,0,0,384]},
+    "affine_content":{"dimensions":[2,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
+    "content_u8":{"dimensions":[384,384],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
+    "content_f32":{"dimensions":[384,384],"channels":3,"data_type":6,"is_placeholder":false,"usage":6},
+    "style_embedding":{"dimensions":[1,1],"channels":100,"data_type":6,"is_placeholder":false,"usage":6},
+    "stylized_f32":{"dimensions":[384,384],"channels":3,"data_type":6,"is_placeholder":false,"usage":6},
+    "stylized_image":{"dimensions":[384,384],"channels":3,"data_type":1,"is_placeholder":true,"usage":6}
+  },
+  "operators": [
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RECTIFIED_VST_ACCESS_PICO","inputs":[],"outputs":[{"tensor":"vst_right"},{"tensor":"vst_left"},{"tensor":"vst_timestamp"},{"tensor":"vst_camera_matrix"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"style_image"}],"outputs":[{"tensor":"style_f32"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"style_f32"},null,null,null,null,null,null,null,null,null],"outputs":[{"tensor":"style_f32"}],"attrs":["({0} / 255.0)"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO","inputs":[{"name":"style_image","tensor":"style_f32"}],"outputs":[{"name":"mobilenet_conv/Conv/BiasAdd","tensor":"style_embedding"}],"model":{"bin_path":"model/stylepredict.tflite","model_name":"style_predictor","model_type":"tflite","model_target":"npu","input":[{"name":"style_image","shape":[1,256,256,3],"encoding_type":"FP32"}],"output":[{"name":"mobilenet_conv/Conv/BiasAdd","shape":[1,1,1,100],"encoding_type":"FP32"}]}},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_GET_AFFINE_PICO","inputs":[{"tensor":"src_points"},{"tensor":"dst_points"}],"outputs":[{"tensor":"affine_content"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_APPLY_AFFINE_PICO","inputs":[{"tensor":"affine_content"},{"tensor":"vst_left"}],"outputs":[{"tensor":"content_u8"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"content_u8"}],"outputs":[{"tensor":"content_f32"}]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"content_f32"},null,null,null,null,null,null,null,null,null],"outputs":[{"tensor":"content_f32"}],"attrs":["({0} / 255.0)"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO","inputs":[{"name":"content_image","tensor":"content_f32"},{"name":"mobilenet_conv/Conv/BiasAdd","tensor":"style_embedding"}],"outputs":[{"name":"transformer/expand/conv3/conv/Sigmoid","tensor":"stylized_f32"}],"model":{"bin_path":"model/styletransfer.tflite","model_name":"style_transfer","model_type":"tflite","model_target":"npu","input":[{"name":"content_image","shape":[1,384,384,3],"encoding_type":"FP32"},{"name":"mobilenet_conv/Conv/BiasAdd","shape":[1,1,1,100],"encoding_type":"FP32"}],"output":[{"name":"transformer/expand/conv3/conv/Sigmoid","shape":[1,384,384,3],"encoding_type":"FP32"}]}},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"stylized_f32"},null,null,null,null,null,null,null,null,null],"outputs":[{"tensor":"stylized_f32"}],"attrs":["({0} * 255.0)"]},
+    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"stylized_f32"}],"outputs":[{"tensor":"stylized_image"}]}
+  ],
+  "inputs": ["style_image","src_points"],
+  "outputs": ["stylized_image"]
+}
