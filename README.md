@@ -95,23 +95,33 @@ See the [Face MediaPipe Pipeline README](samples/face_mediapipe_pipeline/README.
 
 ```text
 .
-├── assets/                         shared assets for programmatic samples
+├── assets/                        shared assets for programmatic samples
 ├── external/SpatialML-XR-Utils/   shared OpenXR and SpatialML utilities
 ├── samples/
-│   ├── face_mediapipe_pipeline/   bundled schema-v2 face package
-│   ├── mnistwild/                 programmatic/ and pipeline/ variants
-│   ├── pose/                      programmatic/ and pipeline/ variants
-│   ├── stylize/                   programmatic/ and pipeline/ variants
-│   ├── whackamole/                programmatic/ and pipeline/ variants
-│   ├── yolo_det/                  programmatic/ and pipeline/ variants
-│   ├── pipeline_common/           common package-host implementation
+│   ├── ufo/                       programmatic face tracking
+│   ├── face_mediapipe_pipeline/   package-driven face detection overlay
+│   ├── mnistwild/
+│   │   ├── programmatic/          programmatic digit recognition
+│   │   └── pipeline/              package-driven digit recognition
+│   ├── pose/
+│   │   ├── programmatic/          programmatic pose estimation
+│   │   └── pipeline/              package-driven pose estimation
+│   ├── yolo_det/
+│   │   ├── programmatic/          programmatic object detection
+│   │   └── pipeline/              package-driven object detection
+│   ├── whackamole/
+│   │   ├── programmatic/          programmatic pose-driven game
+│   │   └── pipeline/              package-driven pose game
+│   ├── stylize/
+│   │   ├── programmatic/          programmatic image stylization
+│   │   └── pipeline/              package-driven image stylization
 │   ├── readback/                  CPU, Vulkan, and OpenGL readback variants
-│   └── rubics_cube/               camera readback and cube solver
-└── scripts/                        repository utilities
+│   ├── rubics_cube/               camera readback and cube solver
+│   └── pipeline_common/           shared package-host implementation
+└── scripts/                       repository utilities
 ```
 
 ## Additional documentation
 
 - [PICO SpatialML Pipeline Zoo](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo)
 - [PICO developer documentation](https://developer-cn.picoxr.com/document/native/securemr-overview/)
-- [Legacy QNN conversion container](Docker/README.md)
