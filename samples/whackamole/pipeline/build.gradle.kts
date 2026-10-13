@@ -3,18 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-val stageWhackamolePipelineAssets by tasks.registering(Sync::class) {
-    from("../../../assets/whackamole") {
-        include("pose_marker.gltf", "redbox.gltf")
-        into("whackamole-pipeline/gltf")
-    }
-    into(layout.buildDirectory.dir("generated/whackamolePipelineAssets"))
-}
-
-tasks.named("preBuild").configure {
-    dependsOn(stageWhackamolePipelineAssets)
-}
-
 android {
     compileSdk = 34
     ndkVersion = "26.3.11579264"
@@ -48,7 +36,6 @@ android {
         getByName("main") {
             manifest.srcFile("AndroidManifest.xml")
             assets.srcDirs("src/main/assets")
-            assets.srcDir(stageWhackamolePipelineAssets.map { it.destinationDir })
         }
     }
     androidResources { noCompress += listOf("tflite", "json", "gltf") }

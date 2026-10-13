@@ -163,7 +163,7 @@ void WhackamoleDetector::CreateGlobalTensor() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<float> distOn(2.0f, 5.0f);
-    std::uniform_real_distribution<float> distOff(1.0f, 2.0f);
+    std::uniform_real_distribution<float> distOff(300.0f, 312.0f);
     std::vector<float> initOn(MAX_MOLES);
     std::vector<float> initOff(MAX_MOLES);
     std::vector<float> initDeadlines(MAX_MOLES);
@@ -318,6 +318,7 @@ void WhackamoleDetector::CreateSecureMrModelInferencePipeline() {
   m_secureMrDetectionPipeline = std::make_shared<Pipeline>(frameworkSession);
   m_secureMrLandmarkPipeline = std::make_shared<Pipeline>(frameworkSession);
   m_secureMrAffineUpdatePipeline = std::make_shared<Pipeline>(frameworkSession);
+  m_secureMrTimerPipeline = std::make_shared<Pipeline>(frameworkSession);
 
   // Step 1: pipeline placeholders for global tensors
   smallF32ImagePlaceholder =
@@ -333,6 +334,8 @@ void WhackamoleDetector::CreateSecureMrModelInferencePipeline() {
   scorePlaceholder = PipelineTensor::PipelinePlaceholderLike(m_secureMrLandmarkPipeline, scoreGlobal);
   realtimeSinceStartupPlaceholder =
       PipelineTensor::PipelinePlaceholderLike(m_secureMrLandmarkPipeline, realtimeSinceStartupGlobal);
+  realtimeSinceStartupTimerPlaceholder =
+      PipelineTensor::PipelinePlaceholderLike(m_secureMrTimerPipeline, realtimeSinceStartupGlobal);
   moleOnTimingsPlaceholder =
       PipelineTensor::PipelinePlaceholderLike(m_secureMrLandmarkPipeline, moleOnTimingsGlobal);
   moleOffTimingsPlaceholder =
@@ -344,6 +347,13 @@ void WhackamoleDetector::CreateSecureMrModelInferencePipeline() {
   roiAffinePh4 = PipelineTensor::PipelinePlaceholderLike(m_secureMrLandmarkPipeline, roiAffineUpdatedGlobal);
 
   roiImagePh = PipelineTensor::PipelinePlaceholderLike(m_secureMrLandmarkPipeline, roiImageGlobal);
+
+  const auto startMs = std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::chrono::system_clock::now().time_since_epoch()).count();
+  std::string timerScript =
+      "var elapsed; elapsed[0] = (Date.now() - " + std::to_string(startMs) + ") / 1000.0;";
+  m_secureMrTimerPipeline->runJavascript(timerScript.data(), timerScript.size(), {},
+                                         {{"elapsed", realtimeSinceStartupTimerPlaceholder}});
 
   // Step 2: local tensors
   auto poseAnchor = std::make_shared<PipelineTensor>(
@@ -619,25 +629,13 @@ XrSecureMrPipelineRunPICO WhackamoleDetector::RunSecureMrModelInferencePipeline(
       {{roiAffinePh2, roiAffineGlobal}, {roiAffinePh3, roiAffineUpdatedGlobal}}, detection, isPoseDetectedGlobal);
   const auto now = std::chrono::steady_clock::now();
   const float elapsed = std::chrono::duration<float>(now - startTime).count();
-  *realtimeSinceStartupGlobal = std::vector<float>{elapsed};
   if (elapsed >= 10.0f && !molesInitApplied) {
     CreateAndRunInitMolesPipeline();
     molesInitApplied = true;
   }
-  {
-    std::vector<float> onTimings(MAX_MOLES);
-    std::vector<float> offTimings(MAX_MOLES);
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> distOn(2.0f, 5.0f);
-    std::uniform_real_distribution<float> distOff(300.0f, 312.0f);
-    for (int i = 0; i < MAX_MOLES; ++i) {
-      onTimings[i] = distOn(gen);
-      offTimings[i] = distOff(gen);
-    }
-    *moleOnTimingsGlobal = onTimings;
-    *moleOffTimingsGlobal = offTimings;
-  }
+  const auto timer =
+      m_secureMrTimerPipeline->submit({{realtimeSinceStartupTimerPlaceholder, realtimeSinceStartupGlobal}}, affine,
+                                      nullptr);
   return m_secureMrLandmarkPipeline->submit({{largeU8ImagePlaceholder, vstOutputLeftUint8Global},
                                              {bodyLandmarkPlaceholder, bodyLandmarkGlobal},
                                              {moleCollisionsPlaceholder, moleCollisionsGlobal},
@@ -649,7 +647,7 @@ XrSecureMrPipelineRunPICO WhackamoleDetector::RunSecureMrModelInferencePipeline(
                                              {scorePlaceholder, scoreGlobal},
                                              {roiAffinePh4, roiAffineUpdatedGlobal},
                                              {roiImagePh, roiImageGlobal}},
-                                            affine, nullptr);
+                                            timer, nullptr);
 }
 
 void WhackamoleDetector::CreateAndRunInitMolesPipeline() {

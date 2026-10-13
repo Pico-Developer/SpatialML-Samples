@@ -221,6 +221,7 @@ class WhackamoleDetector : public ISecureMR {
    * animation
    */
   std::shared_ptr<Pipeline> m_secureMrLandmarkPipeline;
+  std::shared_ptr<Pipeline> m_secureMrTimerPipeline;
 
   /**
    * Render pipeline, where the animation is updated timely
@@ -252,6 +253,7 @@ class WhackamoleDetector : public ISecureMR {
   std::shared_ptr<PipelineTensor> moleDeadlinesPlaceholder;
   std::shared_ptr<PipelineTensor> scorePlaceholder;
   std::shared_ptr<PipelineTensor> realtimeSinceStartupPlaceholder;
+  std::shared_ptr<PipelineTensor> realtimeSinceStartupTimerPlaceholder;
   std::shared_ptr<PipelineTensor> moleOnTimingsPlaceholder;
   std::shared_ptr<PipelineTensor> moleOffTimingsPlaceholder;
   /**
