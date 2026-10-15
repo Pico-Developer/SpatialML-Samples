@@ -1,5 +1,6 @@
 #include "pch.h"
 
+#include <algorithm>
 #include <atomic>
 #include <chrono>
 #include <condition_variable>
@@ -32,6 +33,15 @@
 #ifndef PIPELINE_FRAME_HEIGHT
 #define PIPELINE_FRAME_HEIGHT 512
 #endif
+#ifndef PIPELINE_SUBMIT_INTERVAL_MS
+#define PIPELINE_SUBMIT_INTERVAL_MS 50
+#endif
+#ifndef PIPELINE_PERIODS
+#define PIPELINE_PERIODS ""
+#endif
+#ifndef PIPELINE_INITIAL_BURST_FRAMES
+#define PIPELINE_INITIAL_BURST_FRAMES 0
+#endif
 namespace {
 
 std::vector<std::string> SplitList(const std::string& value) {
@@ -40,6 +50,20 @@ std::vector<std::string> SplitList(const std::string& value) {
   std::string item;
   while (std::getline(stream, item, ',')) {
     if (!item.empty()) result.push_back(item);
+  }
+  return result;
+}
+
+std::vector<uint32_t> ParsePeriods(const std::string& value, const size_t count) {
+  std::vector<uint32_t> result(count, 1u);
+  if (value.empty()) return result;
+  const auto entries = SplitList(value);
+  for (size_t i = 0; i < entries.size() && i < result.size(); ++i) {
+    try {
+      result[i] = std::max(1, std::stoi(entries[i]));
+    } catch (...) {
+      result[i] = 1u;
+    }
   }
   return result;
 }
@@ -78,7 +102,9 @@ class PipelinePackageApp final : public ISecureMR {
       }
 
       bool ready = loaded;
-      for (const auto& id : SplitList(PIPELINE_IDS)) {
+      const auto pipelineIds = SplitList(PIPELINE_IDS);
+      periods_ = ParsePeriods(PIPELINE_PERIODS, pipelineIds.size());
+      for (const auto& id : pipelineIds) {
         const auto it = bundle_.pipelines.find(id);
         if (it == bundle_.pipelines.end() || it->second.pipeline == nullptr) {
           Log::Write(Log::Level::Error,
@@ -104,12 +130,17 @@ class PipelinePackageApp final : public ISecureMR {
         std::unique_lock<std::mutex> lock(mutex_);
         initialized_.wait(lock, [this]() { return initializedFlag_ || !keepRunning_; });
       }
+      uint64_t frameIndex = 0;
       while (keepRunning_) {
         XrSecureMrPipelineRunPICO previous = XR_NULL_HANDLE;
-        for (const auto* package : orderedPipelines_) {
+        for (size_t i = 0; i < orderedPipelines_.size(); ++i) {
+          const bool initialBurst = frameIndex < PIPELINE_INITIAL_BURST_FRAMES;
+          if (!initialBurst && frameIndex % periods_[i] != 0) continue;
+          const auto* package = orderedPipelines_[i];
           previous = package->pipeline->submit(package->submitBindings, previous, nullptr);
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        ++frameIndex;
+        std::this_thread::sleep_for(std::chrono::milliseconds(PIPELINE_SUBMIT_INTERVAL_MS));
       }
     });
   }
@@ -122,6 +153,7 @@ class PipelinePackageApp final : public ISecureMR {
   std::shared_ptr<FrameworkSession> framework_;
   ModelPackagePipelineBundle bundle_;
   std::vector<const ModelPackagePipeline*> orderedPipelines_;
+  std::vector<uint32_t> periods_;
   std::unique_ptr<std::thread> initializer_;
   std::vector<std::thread> runners_;
   std::condition_variable initialized_;

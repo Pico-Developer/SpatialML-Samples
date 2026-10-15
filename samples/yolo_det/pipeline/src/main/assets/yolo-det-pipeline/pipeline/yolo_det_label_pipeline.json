@@ -1,0 +1,781 @@
+{
+  "tensors": {
+    "detection": {
+      "dimensions": [
+        10,
+        6
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6
+    },
+    "detection_gltf": {
+      "dimensions": [
+        1,
+        1
+      ],
+      "channels": 1,
+      "data_type": 1,
+      "is_placeholder": true,
+      "usage": 7,
+      "is_gltf": true,
+      "asset": "gltf/frame2_multi_10_pipeline.gltf"
+    },
+    "text_start": {
+      "dimensions": [
+        1
+      ],
+      "channels": 2,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 1,
+      "data": [
+        0.03,
+        0.65
+      ]
+    },
+    "text_font": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        46
+      ]
+    },
+    "class_text0": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors0": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        255,
+        90,
+        95,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id0": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        0
+      ]
+    },
+    "class_text1": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors1": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        0,
+        212,
+        255,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id1": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        1
+      ]
+    },
+    "class_text2": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors2": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        124,
+        252,
+        0,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id2": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        2
+      ]
+    },
+    "class_text3": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors3": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        255,
+        215,
+        0,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id3": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        3
+      ]
+    },
+    "class_text4": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors4": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        255,
+        77,
+        255,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id4": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        4
+      ]
+    },
+    "class_text5": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors5": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        255,
+        140,
+        0,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id5": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        5
+      ]
+    },
+    "class_text6": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors6": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        77,
+        124,
+        254,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id6": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        6
+      ]
+    },
+    "class_text7": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors7": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        0,
+        230,
+        118,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id7": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        7
+      ]
+    },
+    "class_text8": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors8": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        255,
+        111,
+        181,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id8": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        8
+      ]
+    },
+    "class_text9": {
+      "dimensions": [
+        18
+      ],
+      "channels": 1,
+      "data_type": 2,
+      "is_placeholder": false,
+      "usage": 2
+    },
+    "text_colors9": {
+      "dimensions": [
+        2
+      ],
+      "channels": 4,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 4,
+      "data": [
+        179,
+        136,
+        255,
+        255,
+        24,
+        24,
+        24,
+        224
+      ]
+    },
+    "texture_id9": {
+      "dimensions": [
+        1
+      ],
+      "channels": 1,
+      "data_type": 3,
+      "is_placeholder": false,
+      "usage": 2,
+      "data": [
+        9
+      ]
+    }
+  },
+  "operators": [
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "detection",
+          "tensor": "detection"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "class_text0",
+          "tensor": "class_text0"
+        },
+        {
+          "name": "class_text1",
+          "tensor": "class_text1"
+        },
+        {
+          "name": "class_text2",
+          "tensor": "class_text2"
+        },
+        {
+          "name": "class_text3",
+          "tensor": "class_text3"
+        },
+        {
+          "name": "class_text4",
+          "tensor": "class_text4"
+        },
+        {
+          "name": "class_text5",
+          "tensor": "class_text5"
+        },
+        {
+          "name": "class_text6",
+          "tensor": "class_text6"
+        },
+        {
+          "name": "class_text7",
+          "tensor": "class_text7"
+        },
+        {
+          "name": "class_text8",
+          "tensor": "class_text8"
+        },
+        {
+          "name": "class_text9",
+          "tensor": "class_text9"
+        }
+      ],
+      "attrs": [
+        "var detection;var class_text0;var class_text1;var class_text2;var class_text3;var class_text4;var class_text5;var class_text6;var class_text7;var class_text8;var class_text9;var labels=[\"person\",\"bicycle\",\"car\",\"motorcycle\",\"airplane\",\"bus\",\"train\",\"truck\",\"boat\",\"traffic light\",\"fire hydrant\",\"stop sign\",\"parking meter\",\"bench\",\"bird\",\"cat\",\"dog\",\"horse\",\"sheep\",\"cow\",\"elephant\",\"bear\",\"zebra\",\"giraffe\",\"backpack\",\"umbrella\",\"handbag\",\"tie\",\"suitcase\",\"frisbee\",\"skis\",\"snowboard\",\"sports ball\",\"kite\",\"baseball bat\",\"baseball glove\",\"skateboard\",\"surfboard\",\"tennis racket\",\"bottle\",\"wine glass\",\"cup\",\"fork\",\"knife\",\"spoon\",\"bowl\",\"banana\",\"apple\",\"sandwich\",\"orange\",\"broccoli\",\"carrot\",\"hot dog\",\"pizza\",\"donut\",\"cake\",\"chair\",\"couch\",\"potted plant\",\"bed\",\"dining table\",\"toilet\",\"tv\",\"laptop\",\"mouse\",\"remote\",\"keyboard\",\"cell phone\",\"microwave\",\"oven\",\"toaster\",\"sink\",\"refrigerator\",\"book\",\"clock\",\"vase\",\"scissors\",\"teddy bear\",\"hair drier\",\"toothbrush\"];var o=0;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text0[j]=j<text.length?text.charCodeAt(j):32;var o=6;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text1[j]=j<text.length?text.charCodeAt(j):32;var o=12;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text2[j]=j<text.length?text.charCodeAt(j):32;var o=18;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text3[j]=j<text.length?text.charCodeAt(j):32;var o=24;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text4[j]=j<text.length?text.charCodeAt(j):32;var o=30;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text5[j]=j<text.length?text.charCodeAt(j):32;var o=36;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text6[j]=j<text.length?text.charCodeAt(j):32;var o=42;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text7[j]=j<text.length?text.charCodeAt(j):32;var o=48;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text8[j]=j<text.length?text.charCodeAt(j):32;var o=54;var class_id=detection[o+5];var valid=class_id>=0&&class_id<labels.length&&class_id===Math.floor(class_id);var confidence=Math.max(0,Math.min(100,Math.round(detection[o+4]*100.0)));var text=valid&&detection[o+4]>0.5?labels[class_id]+\" \"+confidence+\"%\":\"\";for(var j=0;j<18;j++)class_text9[j]=j<text.length?text.charCodeAt(j):32;"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text0"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors0"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id0"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text1"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors1"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id1"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text2"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors2"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id2"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text3"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors3"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id3"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text4"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors4"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id4"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text5"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors5"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id5"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text6"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors6"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id6"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text7"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors7"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id7"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text8"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors8"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id8"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RENDER_TEXT_PICO",
+      "inputs": [
+        {
+          "tensor": "class_text9"
+        },
+        {
+          "tensor": "text_start"
+        },
+        {
+          "tensor": "text_colors9"
+        },
+        {
+          "tensor": "detection_gltf"
+        },
+        {
+          "tensor": "texture_id9"
+        },
+        {
+          "tensor": "text_font"
+        }
+      ],
+      "outputs": [],
+      "attrs": [
+        "bold#en-US#512#128"
+      ]
+    }
+  ],
+  "inputs": [
+    "detection"
+  ],
+  "outputs": []
+}

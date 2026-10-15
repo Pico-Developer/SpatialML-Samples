@@ -16,9 +16,12 @@ spatialml_xr_project(
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     PIPELINE_PACKAGE_ROOT="yolo-det-pipeline"
-    PIPELINE_IDS="inference,display"
+    PIPELINE_IDS="inference,labels,display"
+    PIPELINE_PERIODS="1,15,1"
+    PIPELINE_INITIAL_BURST_FRAMES=3
     PIPELINE_APP_TAG="YOLO Detection Pipeline"
     PIPELINE_FRAME_WIDTH=640
     PIPELINE_FRAME_HEIGHT=640
+    PIPELINE_SUBMIT_INTERVAL_MS=100
 )
 

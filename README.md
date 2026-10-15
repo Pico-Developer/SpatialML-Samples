@@ -44,7 +44,7 @@ All currently active ML samples select the LiteRT NPU target. A successful app l
 |------|--------------|--------|
 | UFO and Face Pipeline | MediaPipe Face Detection | [Qualcomm AI Hub](https://aihub.qualcomm.com/models/mediapipe_face) |
 | Pose and Whack-a-Mole | MediaPipe Pose Detector and Pose Landmarker | [Google AI Edge](https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker#models) |
-| YOLO | YOLOv11 detection | [Qualcomm AI Hub](https://aihub.qualcomm.com/models/yolov11_det) |
+| YOLO | YOLOX-M | [LiteRT Community](https://huggingface.co/litert-community/yolox-m-litert) |
 | MNIST Wild | MNIST-12 converted to TFLite | [ONNX Model Zoo](https://github.com/onnx/models/tree/main/validated/vision/classification/mnist) |
 | Stylize | Arbitrary Image Stylization v1 | [Kaggle Models](https://www.kaggle.com/models/google/arbitrary-image-stylization-v1/tfLite) |
 
@@ -70,6 +70,7 @@ Build one module from the repository root. For example:
 ./gradlew :samples:face_mediapipe_pipeline:assembleDebug
 ./gradlew :samples:pose_pipeline:assembleDebug
 ./gradlew :samples:yolo_det:assembleDebug
+./gradlew :samples:yolo_det_pipeline:assembleDebug
 ```
 
 Install directly by replacing `assembleDebug` with `installDebug`, or install the generated APK explicitly. When more than one device is attached, always pass its serial:
@@ -87,9 +88,7 @@ adb -s <device-serial> logcat | grep -E 'OpenMR|Secure MR|litert|SpatialMLDebug'
 
 ## Pipeline packages
 
-The active package samples bundle their assets in Git, so normal Gradle builds do not download models. The Face package is also published in the [PICO SpatialML Pipeline Zoo](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo), but this repository builds from [`samples/face_mediapipe_pipeline/src/main/assets/xr-face-mediapipe-pipeline`](samples/face_mediapipe_pipeline/src/main/assets/xr-face-mediapipe-pipeline).
-
-See the [Face MediaPipe Pipeline README](samples/face_mediapipe_pipeline/README.md) for its package structure and runtime flow.
+The active package samples bundle their assets in Git, so normal Gradle builds do not download models. For example the Face package is also published in the [PICO SpatialML Pipeline Zoo](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo), but this repository builds from [`samples/face_mediapipe_pipeline/src/main/assets/xr-face-mediapipe-pipeline`](samples/face_mediapipe_pipeline/src/main/assets/xr-face-mediapipe-pipeline).
 
 ## Repository layout
 
@@ -123,5 +122,7 @@ See the [Face MediaPipe Pipeline README](samples/face_mediapipe_pipeline/README.
 
 ## Additional documentation
 
+- [YOLO programmatic sample](samples/yolo_det/programmatic/README.md)
+- [YOLO pipeline-package sample](samples/yolo_det/pipeline/README.md)
 - [PICO SpatialML Pipeline Zoo](https://huggingface.co/collections/picoxr/spatialml-pipeline-zoo)
 - [PICO developer documentation](https://developer-cn.picoxr.com/document/native/securemr-overview/)

@@ -5,6 +5,7 @@
 	<uses-feature
 		android:name="android.hardware.vr.headtracking"
 		android:required="true" />
+	<uses-permission android:name="android.permission.CAMERA" />
 	<application
 		android:allowBackup="false"
 		android:hasCode="false"

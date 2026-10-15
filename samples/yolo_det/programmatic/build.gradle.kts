@@ -47,7 +47,7 @@ android {
     sourceSets {
         getByName("main") {
             manifest.srcFile("AndroidManifest.xml")
-            assets.srcDirs("../../../assets/common", "../../../assets/yolo_det")
+            assets.srcDirs("../../../assets/common", "../../../assets/yolo_det_programmatic")
         }
     }
     packaging {

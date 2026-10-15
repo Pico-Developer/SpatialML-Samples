@@ -7,6 +7,10 @@
       "path": "pipeline/yolo_det_inference_pipeline.json"
     },
     {
+      "id": "labels",
+      "path": "pipeline/yolo_det_label_pipeline.json"
+    },
+    {
       "id": "display",
       "path": "pipeline/yolo_det_display_pipeline.json"
     }
@@ -18,4 +22,3 @@
     "detection_tensor": "detection"
   }
 }
-

@@ -1,41 +1,706 @@
 {
   "tensors": {
-    "vst_right":{"dimensions":[640,640],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
-    "vst_left":{"dimensions":[640,640],"channels":3,"data_type":1,"is_placeholder":false,"usage":6},
-    "vst_timestamp":{"dimensions":[1],"channels":4,"data_type":5,"is_placeholder":false,"usage":5},
-    "vst_camera_matrix":{"dimensions":[3,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "image_f32":{"dimensions":[640,640],"channels":3,"data_type":6,"is_placeholder":false,"usage":6},
-    "model_output":{"dimensions":[8400,84],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "detection":{"dimensions":[1,6],"channels":1,"data_type":6,"is_placeholder":true,"usage":6},
-    "image_point_mat":{"dimensions":[1,2],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "image_point":{"dimensions":[1],"channels":2,"data_type":5,"is_placeholder":false,"usage":1},
-    "point_xyz_array":{"dimensions":[1],"channels":3,"data_type":6,"is_placeholder":false,"usage":1},
-    "point_xyz":{"dimensions":[1,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "frame_translation":{"dimensions":[1,3],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "frame_scale":{"dimensions":[3,1],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "rotation":{"dimensions":[3,1],"channels":1,"data_type":6,"is_placeholder":false,"usage":6,"data":[0.0,0.0,0.0]},
-    "local_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "right_eye_transform":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "left_eye_transform":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "world_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":false,"usage":6},
-    "frame_pose":{"dimensions":[4,4],"channels":1,"data_type":6,"is_placeholder":true,"usage":6}
+    "vst_left": {
+      "dimensions": [
+        640,
+        640
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "vst_right": {
+      "dimensions": [
+        640,
+        640
+      ],
+      "channels": 3,
+      "data_type": 1,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "vst_timestamp": {
+      "dimensions": [
+        1
+      ],
+      "channels": 4,
+      "data_type": 5,
+      "is_placeholder": false,
+      "usage": 5
+    },
+    "vst_camera_matrix": {
+      "dimensions": [
+        3,
+        3
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "image_f32": {
+      "dimensions": [
+        640,
+        640
+      ],
+      "channels": 3,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "model_output": {
+      "dimensions": [
+        8400,
+        85
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "candidate_scores": {
+      "dimensions": [
+        128,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "candidate_boxes": {
+      "dimensions": [
+        128,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "candidate_classes": {
+      "dimensions": [
+        128,
+        1
+      ],
+      "channels": 1,
+      "data_type": 5,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "boxes_for_nms": {
+      "dimensions": [
+        128,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "offset_nms_boxes": {
+      "dimensions": [
+        10,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "nms_scores": {
+      "dimensions": [
+        10,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "nms_indices": {
+      "dimensions": [
+        10,
+        1
+      ],
+      "channels": 1,
+      "data_type": 5,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "confirmation_state": {
+      "dimensions": [
+        10,
+        6
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6,
+      "data": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "next_state": {
+      "dimensions": [
+        10,
+        6
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "stable_boxes": {
+      "dimensions": [
+        10,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "stable_scores": {
+      "dimensions": [
+        10,
+        1
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "stable_classes": {
+      "dimensions": [
+        10,
+        1
+      ],
+      "channels": 1,
+      "data_type": 5,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "image_points_mat": {
+      "dimensions": [
+        10,
+        2
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "image_points": {
+      "dimensions": [
+        10
+      ],
+      "channels": 2,
+      "data_type": 5,
+      "is_placeholder": false,
+      "usage": 1
+    },
+    "point_xyz_array": {
+      "dimensions": [
+        10
+      ],
+      "channels": 3,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 1
+    },
+    "point_xyz": {
+      "dimensions": [
+        10,
+        3
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "right_eye_transform": {
+      "dimensions": [
+        4,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "left_eye_transform": {
+      "dimensions": [
+        4,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": false,
+      "usage": 6
+    },
+    "detection": {
+      "dimensions": [
+        10,
+        6
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6
+    },
+    "node_poses": {
+      "dimensions": [
+        20,
+        4,
+        4
+      ],
+      "channels": 1,
+      "data_type": 6,
+      "is_placeholder": true,
+      "usage": 6
+    }
   },
   "operators": [
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RECTIFIED_VST_ACCESS_PICO","inputs":[],"outputs":[{"tensor":"vst_left"},{"tensor":"vst_right"},{"tensor":"vst_timestamp"},{"tensor":"vst_camera_matrix"}]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"vst_left"}],"outputs":[{"tensor":"image_f32"}]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"image_f32"},null,null,null,null,null,null,null,null,null],"outputs":[{"tensor":"image_f32"}],"attrs":["({0} / 255.0)"]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO","inputs":[{"name":"images","tensor":"image_f32"}],"outputs":[{"name":"output0","tensor":"model_output"}],"model":{"bin_path":"model/yolom.tflite","model_name":"yolo","model_type":"tflite","model_target":"npu","input":[{"name":"images","shape":[1,640,640,3],"encoding_type":"FP32"}],"output":[{"name":"output0","shape":[1,8400,84],"encoding_type":"FP32"}]}},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO","inputs":[{"name":"model_output","tensor":"model_output"}],"outputs":[{"name":"detection","tensor":"detection"}],"attrs":["var model_output; var detection; var best=-1000.0; var bestRow=0; var bestClass=0; for(var r=0;r<8400;r++){var base=r*84; for(var c=0;c<80;c++){var s=model_output[base+4+c]; if(s>best){best=s; bestRow=r; bestClass=c;}}} var b=bestRow*84; detection[0]=model_output[b]; detection[1]=model_output[b+1]; detection[2]=model_output[b+2]; detection[3]=model_output[b+3]; detection[4]=best; detection[5]=bestClass;"]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"detection"}],"outputs":[{"tensor":"image_point_mat"}],"src_slices":[[0,1],[0,2]]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"image_point_mat"}],"outputs":[{"tensor":"image_point"}]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_UV_TO_3D_IN_CAM_SPACE_PICO","inputs":[{"tensor":"image_point"},{"tensor":"vst_timestamp"},{"tensor":"vst_camera_matrix"},{"tensor":"vst_left"},{"tensor":"vst_right"}],"outputs":[{"tensor":"point_xyz_array"}]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO","inputs":[{"tensor":"point_xyz_array"}],"outputs":[{"tensor":"point_xyz"}],"src_slices":[[0,1]],"src_channel_slice":[0,3]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO","inputs":[{"name":"detection","tensor":"detection"},{"name":"point_xyz","tensor":"point_xyz"}],"outputs":[{"name":"frame_translation","tensor":"frame_translation"},{"name":"frame_scale","tensor":"frame_scale"}],"attrs":["var detection; var point_xyz; var frame_translation; var frame_scale; var depth=point_xyz[2]; var ratio=Math.min(depth,-1.5)/depth; frame_translation[0]=point_xyz[0]*ratio+0.1; frame_translation[1]=-point_xyz[1]*ratio; frame_translation[2]=point_xyz[2]*ratio; frame_scale[0]=detection[2]/2000.0; frame_scale[1]=detection[3]/2000.0; frame_scale[2]=0.05;"]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_MAKE_TRANSFORM_MAT_PICO","inputs":[{"tensor":"rotation"},{"tensor":"frame_translation"},{"tensor":"frame_scale"}],"outputs":[{"tensor":"local_pose"}]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_CAMERA_SPACE_TO_WORLD_PICO","inputs":[{"tensor":"vst_timestamp"}],"outputs":[{"tensor":"right_eye_transform"},{"tensor":"left_eye_transform"}]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_ARITHMETIC_COMPOSE_PICO","inputs":[{"tensor":"left_eye_transform"},{"tensor":"local_pose"},null,null,null,null,null,null,null,null],"outputs":[{"tensor":"world_pose"}],"attrs":["({0} * {1})"]},
-    {"type":"XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO","inputs":[{"name":"world_pose","tensor":"world_pose"}],"outputs":[{"name":"frame_pose","tensor":"frame_pose"}],"attrs":["var world_pose; var frame_pose; for(var i=0;i<16;i++)frame_pose[i]=world_pose[i]; frame_pose[1]=0.0; frame_pose[4]=0.0; frame_pose[6]=0.0; frame_pose[9]=0.0;"]}
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RECTIFIED_VST_ACCESS_PICO",
+      "inputs": [],
+      "outputs": [
+        {
+          "tensor": "vst_left"
+        },
+        {
+          "tensor": "vst_right"
+        },
+        {
+          "tensor": "vst_timestamp"
+        },
+        {
+          "tensor": "vst_camera_matrix"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO",
+      "inputs": [
+        {
+          "tensor": "vst_left"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "image_f32"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO",
+      "inputs": [
+        {
+          "name": "images",
+          "tensor": "image_f32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output0",
+          "tensor": "model_output"
+        }
+      ],
+      "model": {
+        "bin_path": "model/yolox_m.tflite",
+        "model_name": "yolox_m",
+        "model_type": "tflite",
+        "model_target": "npu",
+        "input": [
+          {
+            "name": "images",
+            "shape": [
+              1,
+              640,
+              640,
+              3
+            ],
+            "encoding_type": "FP32"
+          }
+        ],
+        "output": [
+          {
+            "name": "output0",
+            "shape": [
+              1,
+              8400,
+              85
+            ],
+            "encoding_type": "FP32"
+          }
+        ]
+      }
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_RUN_MODEL_INFERENCE_PICO",
+      "inputs": [
+        {
+          "name": "predictions",
+          "tensor": "model_output"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "candidate_scores",
+          "tensor": "candidate_scores"
+        },
+        {
+          "name": "candidate_boxes",
+          "tensor": "candidate_boxes"
+        },
+        {
+          "name": "candidate_classes",
+          "tensor": "candidate_classes"
+        }
+      ],
+      "model": {
+        "bin_path": "model/yolox_postprocess.tflite",
+        "model_name": "yolox_postprocess",
+        "model_type": "tflite",
+        "model_target": "cpu",
+        "cpu_target_num_threads": 4,
+        "input": [
+          {
+            "name": "predictions",
+            "shape": [
+              1,
+              8400,
+              85
+            ],
+            "encoding_type": "FP32"
+          }
+        ],
+        "output": [
+          {
+            "name": "candidate_scores",
+            "shape": [
+              128,
+              1
+            ],
+            "encoding_type": "FP32"
+          },
+          {
+            "name": "candidate_boxes",
+            "shape": [
+              128,
+              4
+            ],
+            "encoding_type": "FP32"
+          },
+          {
+            "name": "candidate_classes",
+            "shape": [
+              128,
+              1
+            ],
+            "encoding_type": "INT32"
+          }
+        ]
+      }
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "candidate_boxes",
+          "tensor": "candidate_boxes"
+        },
+        {
+          "name": "candidate_classes",
+          "tensor": "candidate_classes"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "boxes_for_nms",
+          "tensor": "boxes_for_nms"
+        }
+      ],
+      "attrs": [
+        "var candidate_boxes;var candidate_classes;var boxes_for_nms;for(var i=0;i<128;i++){var offset=candidate_classes[i]*1000.0;for(var c=0;c<4;c++)boxes_for_nms[i*4+c]=candidate_boxes[i*4+c]+offset;}"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_NMS_PICO",
+      "attrs": [
+        "0.5"
+      ],
+      "inputs": [
+        {
+          "tensor": "candidate_scores"
+        },
+        {
+          "tensor": "boxes_for_nms"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "nms_scores"
+        },
+        {
+          "tensor": "offset_nms_boxes"
+        },
+        {
+          "tensor": "nms_indices"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "candidate_boxes",
+          "tensor": "candidate_boxes"
+        },
+        {
+          "name": "candidate_classes",
+          "tensor": "candidate_classes"
+        },
+        {
+          "name": "nms_scores",
+          "tensor": "nms_scores"
+        },
+        {
+          "name": "nms_indices",
+          "tensor": "nms_indices"
+        },
+        {
+          "name": "state",
+          "tensor": "confirmation_state"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "next_state",
+          "tensor": "next_state"
+        },
+        {
+          "name": "stable_boxes",
+          "tensor": "stable_boxes"
+        },
+        {
+          "name": "stable_scores",
+          "tensor": "stable_scores"
+        },
+        {
+          "name": "stable_classes",
+          "tensor": "stable_classes"
+        }
+      ],
+      "attrs": [
+        "var candidate_boxes;var candidate_classes;var nms_scores;var nms_indices;var state;var next_state;var stable_boxes;var stable_scores;var stable_classes;var used=[];for(var p=0;p<10;p++)used[p]=false;for(var z=0;z<10;z++){for(var c=0;c<6;c++)next_state[z*6+c]=0;for(var b=0;b<4;b++)stable_boxes[z*4+b]=0;stable_scores[z]=0;stable_classes[z]=-1;}for(var i=0;i<10;i++){var source=nms_indices[i];var score=nms_scores[i];if(source<0||source>=128||score<=0.5)continue;var class_id=candidate_classes[source];var o=source*4;var ax1=candidate_boxes[o];var ay1=candidate_boxes[o+1];var ax2=candidate_boxes[o+2];var ay2=candidate_boxes[o+3];if(!isFinite(ax1)||!isFinite(ay1)||!isFinite(ax2)||!isFinite(ay2))continue;ax1=Math.max(0,Math.min(639,ax1));ay1=Math.max(0,Math.min(639,ay1));ax2=Math.max(0,Math.min(639,ax2));ay2=Math.max(0,Math.min(639,ay2));if(ax2<=ax1||ay2<=ay1)continue;var best=-1;var best_iou=0.4;for(var q=0;q<10;q++){if(used[q]||state[q*6+5]<=0||state[q*6+4]!==class_id)continue;var bx1=state[q*6];var by1=state[q*6+1];var bx2=state[q*6+2];var by2=state[q*6+3];var ix1=Math.max(ax1,bx1);var iy1=Math.max(ay1,by1);var ix2=Math.min(ax2,bx2);var iy2=Math.min(ay2,by2);var iw=Math.max(0,ix2-ix1);var ih=Math.max(0,iy2-iy1);var intersection=iw*ih;var area_a=Math.max(0,ax2-ax1)*Math.max(0,ay2-ay1);var area_b=Math.max(0,bx2-bx1)*Math.max(0,by2-by1);var union_area=area_a+area_b-intersection;var overlap=union_area>0?intersection/union_area:0;if(overlap>best_iou){best_iou=overlap;best=q;}}var hits=1;if(best>=0){used[best]=true;hits=Math.min(3,state[best*6+5]+1);}var clipped=[ax1,ay1,ax2,ay2];for(var d=0;d<4;d++){var value=clipped[d];next_state[i*6+d]=value;stable_boxes[i*4+d]=value;}next_state[i*6+4]=class_id;next_state[i*6+5]=hits;stable_classes[i]=class_id;stable_scores[i]=hits>=3?score:0;}"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO",
+      "inputs": [
+        {
+          "tensor": "next_state"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "confirmation_state"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "stable_boxes",
+          "tensor": "stable_boxes"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image_points_mat",
+          "tensor": "image_points_mat"
+        }
+      ],
+      "attrs": [
+        "var stable_boxes;var image_points_mat;for(var i=0;i<10;i++){var b=i*4;var p=i*2;image_points_mat[p]=(stable_boxes[b]+stable_boxes[b+2])*0.5;image_points_mat[p+1]=(stable_boxes[b+1]+stable_boxes[b+3])*0.5;}"
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO",
+      "inputs": [
+        {
+          "tensor": "image_points_mat"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "image_points"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_UV_TO_3D_IN_CAM_SPACE_PICO",
+      "inputs": [
+        {
+          "tensor": "image_points"
+        },
+        {
+          "tensor": "vst_timestamp"
+        },
+        {
+          "tensor": "vst_camera_matrix"
+        },
+        {
+          "tensor": "vst_left"
+        },
+        {
+          "tensor": "vst_right"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "point_xyz_array"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_ASSIGNMENT_PICO",
+      "inputs": [
+        {
+          "tensor": "point_xyz_array"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "point_xyz"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_CAMERA_SPACE_TO_WORLD_PICO",
+      "inputs": [
+        {
+          "tensor": "vst_timestamp"
+        }
+      ],
+      "outputs": [
+        {
+          "tensor": "right_eye_transform"
+        },
+        {
+          "tensor": "left_eye_transform"
+        }
+      ]
+    },
+    {
+      "type": "XR_SECURE_MR_OPERATOR_TYPE_JS_SCRIPTING_PICO",
+      "inputs": [
+        {
+          "name": "stable_boxes",
+          "tensor": "stable_boxes"
+        },
+        {
+          "name": "stable_scores",
+          "tensor": "stable_scores"
+        },
+        {
+          "name": "stable_classes",
+          "tensor": "stable_classes"
+        },
+        {
+          "name": "point_xyz",
+          "tensor": "point_xyz"
+        },
+        {
+          "name": "vst_camera_matrix",
+          "tensor": "vst_camera_matrix"
+        },
+        {
+          "name": "left_eye_transform",
+          "tensor": "left_eye_transform"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "detection",
+          "tensor": "detection"
+        },
+        {
+          "name": "node_poses",
+          "tensor": "node_poses"
+        }
+      ],
+      "attrs": [
+        " var stable_boxes;var stable_scores;var stable_classes;var point_xyz;var vst_camera_matrix; var left_eye_transform;var detection;var node_poses; var placed_min_x=[],placed_max_x=[],placed_min_y=[],placed_max_y=[]; for(var i=0;i<10;i++){ var b=i*4,p=i*3,d=i*6; var xmin=stable_boxes[b],ymin=stable_boxes[b+1],xmax=stable_boxes[b+2],ymax=stable_boxes[b+3]; var width=xmax-xmin,height=ymax-ymin,score=stable_scores[i],class_id=stable_classes[i]; detection[d]=(xmin+xmax)*0.5;detection[d+1]=(ymin+ymax)*0.5; detection[d+2]=width;detection[d+3]=height;detection[d+4]=score;detection[d+5]=class_id; var x=point_xyz[p],y=point_xyz[p+1],z=point_xyz[p+2]; var has_depth=isFinite(x)&&isFinite(y)&&isFinite(z)&&z<-0.001; var render_depth=has_depth?Math.max(-5.0,Math.min(z,-1.5)):-1.5; var ratio=has_depth?render_depth/z:0.0; if(has_depth){x*=ratio;y*=ratio;}else{x=0.0;y=0.0;}z=render_depth; var positive_depth=-render_depth,fx=vst_camera_matrix[0],fy=vst_camera_matrix[4]; var visible=score>0.5&&has_depth?1.0:0.0; var frame_scale_x=positive_depth*width/(fx*10.0)*visible; var frame_scale_y=positive_depth*height/(fy*10.0)*visible; var frame_local=[frame_scale_x,0,0,x+0.1,0,frame_scale_y,0,-y,0,0,0.05*visible,z,0,0,0,1]; var frame_world=new Array(16).fill(0); for(var r=0;r<4;r++)for(var c=0;c<4;c++)for(var k=0;k<4;k++) frame_world[r*4+c]+=left_eye_transform[r*4+k]*frame_local[k*4+c]; frame_world[1]=0;frame_world[4]=0;frame_world[6]=0;frame_world[9]=0; for(var m=0;m<16;m++)node_poses[i*16+m]=frame_world[m]; var label_width=Math.min(112,Math.max(80,width)),label_height=label_width*0.25; var horizontal_sign=i%2===0?1.0:-1.0; var delta_u=(label_width-width)*0.5*horizontal_sign; var center_x=(xmin+xmax)*0.5+delta_u; var top_min_x=center_x-label_width*0.5,top_max_x=center_x+label_width*0.5; var top_min_y=ymin,top_max_y=ymin+label_height,collision=false; for(var previous=0;previous<i;previous++){ if(stable_scores[previous]<=0.5)continue; if(top_min_x<placed_max_x[previous]&&top_max_x>placed_min_x[previous]&& top_min_y<placed_max_y[previous]&&top_max_y>placed_min_y[previous])collision=true; } placed_min_x[i]=top_min_x;placed_max_x[i]=top_max_x; placed_min_y[i]=top_min_y;placed_max_y[i]=top_max_y; var vertical_sign=collision?-1.0:1.0; var delta_v=(label_height-height)*0.5*vertical_sign; var delta_x=positive_depth*delta_u/fx,delta_y=positive_depth*delta_v/fy; var label_scale_x=positive_depth*label_width/fx*visible; var label_scale_y=positive_depth*label_height/fy*visible; var label_local=[label_scale_x,0,0,x+delta_x+0.1,0,label_scale_y,0,-(y+delta_y), 0,0,0.01*visible,z+0.02,0,0,0,1]; var label_world=new Array(16).fill(0); for(var rr=0;rr<4;rr++)for(var cc=0;cc<4;cc++)for(var kk=0;kk<4;kk++) label_world[rr*4+cc]+=left_eye_transform[rr*4+kk]*label_local[kk*4+cc]; label_world[1]=0;label_world[4]=0;label_world[6]=0;label_world[9]=0; for(var n=0;n<16;n++)node_poses[(10+i)*16+n]=label_world[n]; }"
+      ]
+    }
   ],
   "inputs": [],
-  "outputs": ["detection", "frame_pose"]
+  "outputs": [
+    "detection",
+    "node_poses"
+  ]
 }
